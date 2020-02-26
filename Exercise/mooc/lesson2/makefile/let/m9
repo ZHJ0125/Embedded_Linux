@@ -1,0 +1,7 @@
+hello: a.c b.c c.c
+	@echo "$% -> " $%
+	@echo "$? -> " $?
+	@echo "$^ -> " $^
+	@echo "$* -> " $*
+	@echo "$+ -> " $+
+	@echo "$@ -> " $@

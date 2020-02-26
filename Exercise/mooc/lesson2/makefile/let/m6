@@ -1,0 +1,3 @@
+PATH:= "/home/zhj"
+all:
+	@echo $(PATH)

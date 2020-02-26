@@ -1,0 +1,6 @@
+all:
+	@echo $(AR)
+	@echo $(AS)
+	@echo $(CC)
+	@echo $(CPP)
+	@echo $(RM)

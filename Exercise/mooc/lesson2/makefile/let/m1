@@ -1,0 +1,5 @@
+foo = $(bar)
+bar = $(qqq)
+qqq = zhang
+all:
+	echo $(foo)
