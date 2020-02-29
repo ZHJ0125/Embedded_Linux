@@ -360,14 +360,14 @@ void Show_Data_Sorted_By_Mark(struct student *test)
 
 
 /*************************************************
-Function: Write_Data_to_File
-Description: Write All Student's Data to File,and append local time.
-Input: Structure pointer of student *test; The File Name of StudentData
-Output: The File Called "FileName".
-Return: None
-Author: ZhangH.J.
-Date: 2019/10/27
-*************************************************/
+ * Function: Write_Data_to_File
+ * Description: Write All Student's Data to File,and append local time.
+ * Input: Structure pointer of student *test; The File Name of StudentData
+ * Output: The File Called "FileName".
+ * Return: None
+ * Author: ZhangH.J.
+ * Modification date: 2020/02/29
+ *************************************************/
 void Write_Data_to_File(struct student *test, char* FileName)
 {
     FILE *fp;
@@ -380,12 +380,10 @@ void Write_Data_to_File(struct student *test, char* FileName)
     {
         int con = 0;
         int current;
-
         fprintf(fp, "\n\nRandomly generate the following student information: \n\n");
 		fprintf(fp, "--------------------------------------------------------------------\n");
 		fprintf(fp, "| StuID\t|  Name\t  |  Marks(CN Math EN)  | Total |  Average  | Rank |\n");
 		fprintf(fp, "--------------------------------------------------------------------\n");
-
 		while(con < NUM_OF_STUDENT)
         {
             fprintf(fp, "| %3d   |  %-7s|\t  ",(test+(con))->stuid, (test+(con))->name);     // Display StudentID and Name
@@ -398,17 +396,15 @@ void Write_Data_to_File(struct student *test, char* FileName)
             fprintf(fp, "  \t|  %-3d\t|  %6.2lf   |  %-4d|\n", (test+(con))->total, (test+(con))->avg, (test+(con))->rank);
             con ++;     // for next student
         }
-		fprintf(fp, "--------------------------------------------------------------------\n");
-        fprintf(fp, "\n");   // Split display
-
+		fprintf(fp, "--------------------------------------------------------------------\n\n");
 		// The following part used to get localtime and write time to DataFile
 		time_t tmpcal_ptr;
 		struct tm *tmp_ptr = NULL;
 		time(&tmpcal_ptr);
 		//printf("tmpcal_ptr=%ld\n", tmpcal_ptr);
 		tmp_ptr = localtime(&tmpcal_ptr);
-		fprintf (fp,"The latest Record added in : %d.%d.%d ", (1900+tmp_ptr->tm_year), (1+tmp_ptr->tm_mon), tmp_ptr->tm_mday);
-		fprintf(fp,"%d:%d:%d\n\n", tmp_ptr->tm_hour, tmp_ptr->tm_min, tmp_ptr->tm_sec);
+		fprintf (fp,"The latest Record added in : %d.%02d.%02d ", (1900+tmp_ptr->tm_year), (1+tmp_ptr->tm_mon), tmp_ptr->tm_mday);
+		fprintf(fp,"%02d:%02d:%02d\n\n", tmp_ptr->tm_hour, tmp_ptr->tm_min, tmp_ptr->tm_sec);
 	}
     fclose(fp);
     printf("Written to file completion (^o^)!\n\n");
