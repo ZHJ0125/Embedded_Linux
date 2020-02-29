@@ -23,5 +23,7 @@
 3. 改变随机生成的学生人数
 
 测试过程如图3所示：
+
 ![lesson6_test](https://zhj0125.oss-cn-shanghai.aliyuncs.com/Class/lesson6_test.jpg)
+
 图3.功能测试
