@@ -41,9 +41,9 @@ int main(int argc, char* argv[]){
 	}
 	// Read data from file
 	get_line(buf, sizeof(buf), fp);
-	// fflush(NULL);
+//	fflush(NULL);
 	fprintf(fp, "This line should be the new second line.\n");
-	fflush(NULL);
+//	fflush(NULL);
 	get_line(buf, sizeof(buf), fp);
 	// Close file
 	fclose(fp);
