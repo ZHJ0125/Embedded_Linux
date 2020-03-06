@@ -11,15 +11,15 @@ int main(){
 		return -1;
 	}
 	if(pid == 0){
-		// 进入子进程
+		// Execute child process
 		// printf("Here is child progress\n");
 		printf("Please enter lowercase letters :\n");
-		// 调用 function 实现转换和输出
+		// Call 'function' for conversion and output
 		execl("./function", "./function", NULL);
 		printf("Fail to call execl()\n");
 	}
 	else{
-		wait(&childpid);	// 父进程等待子进程结束
+		wait(&childpid);	// Wait for the child process to end
 		// printf("child progress exit successful\n");
 	}
 	return 0;

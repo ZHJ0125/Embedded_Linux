@@ -1,39 +1,26 @@
 #include <stdio.h>
 #include <ctype.h>
 
-/*
-void fun(char*);
-
-int main(){
-	char string[100];
-	while(1){
-		//scanf("%s", string);
-		fgets(string, 100, stdin);
-		fun(string);
-	}
-}
-*/
-
 void main(){
-	char string[100];
-	char* origin;
+	char origin[100];
+	char* string;
 	while(1){
-		// 从键盘输入字符串
-		fgets(string, 100, stdin);
-		origin = string;
-		// 开始转换字符串
-		while(*origin != '\0'){
-			// 遇到“#”结束转换
-			if(*origin == '#'){
-				*(origin+1) = '\0';
-				printf("%s\n", string);
+		// Enter origin from keyboard
+		fgets(origin, 100, stdin);
+		string = origin;
+		// Start conversion
+		while(*string != '\0'){
+			// Conversion over with '#'
+			if(*string == '#'){
+				*(string+1) = '\0';
+				printf("%s\n", origin);
 				return;
 			}
-			// 转换大小写
-			*origin = toupper(*origin);
-			origin++;
+			// Convert to uppercase letters
+			*string = toupper(*string);
+			string++;
 		}
-		// 输出转换后的字符串
-		printf("%s", string);
+		// Output result
+		printf("%s", origin);
 	}
 }
