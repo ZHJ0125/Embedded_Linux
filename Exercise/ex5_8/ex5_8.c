@@ -21,6 +21,7 @@ void h_exit(int status){
 int main(){
 	pid_t pid;
 	int status;
+	// Check whether WCOREDUMP has defined or not
 	#ifdef WCOREDUMP
 		printf("Defined WCOREDUMP\n");
 	#endif
