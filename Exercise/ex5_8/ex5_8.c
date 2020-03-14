@@ -11,9 +11,9 @@ void h_exit(int status){
 	else if(WIFSIGNALED(status)){
 		printf("Abnormal termination, signal number = %d %s\n", WTERMSIG(status),
 	#ifdef WCOREDUMP
-		WCOREDUMP(status)?")":"(core file generated)");
+		WCOREDUMP(status)?"(core file generated)":"");
 	#else
-		")");
+		"");
 	#endif
 	}
 }
