@@ -15,7 +15,7 @@ int main(){
     // Cyclic display based on flag
     while(flag){
         printf("How are you!\n");
-        usleep(100000);
+        usleep(100000);   // delay 100ms
     }
     return 0;
 }
