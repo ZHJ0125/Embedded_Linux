@@ -8,12 +8,16 @@
 
 # 二、程序代码
 程序代码如图1所示：
+
 ![程序代码](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lessson10/lesson10_show.png)
+
 图1. 程序代码    备用图片链接： https://zhj0125.oss-cn-shanghai.aliyuncs.com/Class/lesson10_show.png
 
 # 三、程序测试
 程序测试过程如图2所示：
+
 ![程序测试](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lessson10/lesson10_debug.png)
+
 图2. 程序测试    备用图片链接： https://zhj0125.oss-cn-shanghai.aliyuncs.com/Class/lesson10_debug.png
 
 # 四、程序执行过程分析
