@@ -48,5 +48,5 @@
 
 > 下面的嵌入式视频播放器的视频源为Github，加载可能较慢，可以点击链接以查看部署在阿里云上的[原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
 
-<video src="http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4" controls="controls" width="500" height="350">您的浏览器不支持播放该H5视频！</video>
+<video src="https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson11/lesson11_debug.mp4" controls="controls" width="500" height="350">您的浏览器不支持播放该HTML5视频！请点击链接查看原视频</video>
 
