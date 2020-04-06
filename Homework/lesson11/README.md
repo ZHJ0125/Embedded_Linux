@@ -46,7 +46,7 @@
 
 ### 调试过程演示
 
-> 下面的嵌入式视频播放器的视频源为Github，加载可能较慢，可以点击链接以查看部署在阿里云上的[原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
+> 下面是发布在B站的嵌入式演示视频，您也可以点击链接以查看部署在阿里云上的[原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
 
-<video src="https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson11/lesson11_debug.mp4" controls="controls" width="500" height="350">您的浏览器不支持播放该HTML5视频！请点击链接查看原视频</video>
+<iframe src="//player.bilibili.com/player.html?aid=242716696&bvid=BV1ne41147xk&cid=174852510&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 

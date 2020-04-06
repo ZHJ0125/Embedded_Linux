@@ -55,7 +55,8 @@ int main(){
                 /* Server send a reply message to the client */
                 if((PrivateFd = open(Private_FIFO_Name, O_WRONLY)) > 0){
                     Server_to_Client.client_pid = Client_to_Server.client_pid;
-                    sprintf(Server_to_Client.message, "Hello,Client_%d!\nI Received your message: ", Client_to_Server.client_pid);
+                    sprintf(Server_to_Client.message, "Hello,Client_%d!\nI Received your message: ",\
+                     Client_to_Server.client_pid);
                     strcat(Server_to_Client.message, Client_to_Server.message);
                     if(write(PrivateFd, &Server_to_Client, sizeof(struct FIFO_Data))){
                         printf("Write message to Client Success!\n\n");
