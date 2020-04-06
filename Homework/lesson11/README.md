@@ -39,3 +39,10 @@
 1. 对于每个客户端来说，向服务端发送CLIENT_QUIT标识的数据之后，客户端就直接结束进程。
 2. 对于服务器来说，当收到来自客户端的CLIENT_QUIT数据之后，就将相应客户端的私有管道断开，删除私有管道文件。
 3. 服务端启动后不能自行结束，需要按下CTRL+C产生SIGINT信号。服务端捕获到SIGINT信号后，将会断开共有管道，删除共有管道文件。
+
+### 调试过程演示
+
+> 下面的嵌入式视频播放器的视频源为Github，加载可能较慢，可以点击链接[查看原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
+
+<video src="https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson11/lesson11_debug.mp4" controls="controls" width="500" height="350">您的浏览器不支持播放该H5视频！</video>
+
