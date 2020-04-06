@@ -1,32 +1,23 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <signal.h>
+/********************************************************************
+*   File Name: server.c
+*   Description: \
+*   1. Bind the SIGINT signal.
+*   2. Create a public FIFO and open it with read-only mode.
+*   3. Read the client's data, determine whether the client is new or not.
+*   4. If the client is new, create a private pipe based on this client's PID.
+*   5. Writes some message to client with the private FIFO.
+*   6. Reads data from client with the public FIFO.
+*   7. If "quit" is read from the client,\
+*      close the private FIFO and end the session.
+*   Author: Zhang Houjin
+*   Date: 2020/04/06
+*********************************************************************/
 
-#define PUBLIC_FIFO "Server_FIFO"
-#define PRIVATE_FIFO "Client_FIFO_"
-
-struct FIFO_Data{
-    int client_pid;
-    char message[100];
-};
-
-void Create_FIFO(char *FIFO_Name);
-char* Get_Private_FIFO_Name(int Client_PID);
-void sigcatch(int signum);
-char Private_Name[20];
+#include "fifo.h"
 
 int main(){
 
-    int Client_Num = 0;
-    int PublicFd, PrivateFd;
-    char* Private_FIFO_Name;
-    struct FIFO_Data Client_to_Server, Server_to_Client;
-
+    /* Bind the SIGINT signal */
     if(signal(SIGINT, &sigcatch) == SIG_ERR){
         printf("Couldn't register signal handler\n");
         exit(1);
@@ -35,28 +26,33 @@ int main(){
     Create_FIFO(PUBLIC_FIFO);
 
     while(1){
+
         if((PublicFd = open(PUBLIC_FIFO, O_RDONLY)) < 0){
             printf("Fail to open PUBLIC_FIFO\n");
             exit(1);
         }
         //printf("PUBLIC_FIFO has been opened\n");
-    
+
+        /* Read the strcut data of the public FIFO */
         if(read(PublicFd, &Client_to_Server, sizeof(struct FIFO_Data)) > 0){
             
             printf("Client Pid is : %d\n", Client_to_Server.client_pid);
             printf("Client Message is : %s", Client_to_Server.message);
             Private_FIFO_Name = Get_Private_FIFO_Name(Client_to_Server.client_pid);
             
-            if(strcmp(Client_to_Server.message, "00000\n") == 0){
-                printf("Yes! You are a new client!\nClient Number: %d\n", Client_Num ++);
+            /* Create the private FIFO for a new client */
+            if(strcmp(Client_to_Server.message, IS_NEW_CLIENT) == 0){
+                printf("This is a new client!\n");
                 Create_FIFO(Private_FIFO_Name);
             }
             
-            if(strcmp(Client_to_Server.message, "quit\n") == 0){
+            /* If the client exits, cut off communication */
+            if(strcmp(Client_to_Server.message, CLIENT_QUIT) == 0){
                 unlink(Private_FIFO_Name);
                 printf("Closed Client_%d Private FIFO\n\n", Client_to_Server.client_pid);
             }
             else{
+                /* Server send a reply message to the client */
                 if((PrivateFd = open(Private_FIFO_Name, O_WRONLY)) > 0){
                     Server_to_Client.client_pid = Client_to_Server.client_pid;
                     sprintf(Server_to_Client.message, "Hello,Client_%d!\nI Received your message: ", Client_to_Server.client_pid);
@@ -76,32 +72,4 @@ int main(){
     }
     
     return 0;
-}
-
-void Create_FIFO(char *FIFO_Name){
-    int TempFd;
-    if((TempFd = open(FIFO_Name, O_RDONLY)) == -1){
-        umask(0);
-        mknod(FIFO_Name, S_IFIFO|0666, 0);
-        printf("%s has been bulid\n", FIFO_Name);
-    }
-    else{
-        close(TempFd);
-    }
-}
-
-char* Get_Private_FIFO_Name(int Client_PID){
-    char TempBuffer[6];
-    strcpy(Private_Name, PRIVATE_FIFO);
-    sprintf(TempBuffer, "%d", Client_PID);
-    //printf("TempBuffer is : %s\n", TempBuffer);
-    strcat(Private_Name, TempBuffer);
-    return Private_Name;
-}
-
-void sigcatch(int num){
-    printf("\nServer is exiting...\n");
-    unlink(PUBLIC_FIFO);
-    printf("Removed %s\nSee you again 😉\n\n", PUBLIC_FIFO);
-    exit(0);
 }
