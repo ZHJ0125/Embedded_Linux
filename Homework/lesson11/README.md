@@ -46,6 +46,6 @@
 
 ### 调试过程演示
 
-> 下面是发布在B站的嵌入式演示视频，您也可以点击链接以查看部署在阿里云上的[原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
+> 下面是发布在B站的演示视频，您也可以点击链接以查看部署在阿里云上的[原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
 
-<iframe src="//player.bilibili.com/player.html?aid=242716696&bvid=BV1ne41147xk&cid=174852510&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+[BiliBili - 命名管道_客户端服务器模型_测试视频](https://www.bilibili.com/video/BV1ne41147xk/)
