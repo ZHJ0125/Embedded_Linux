@@ -1,5 +1,7 @@
 ## 说明文档
 
+> Linux C 编程： 使用命名管道FIFO实现客户端服务器的通信
+
 ### 文件概述
 
 | 文件名 | 功能 |
@@ -44,8 +46,21 @@
 
 ![lesson11_flow](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson11/lesson11_flow.png)
 
+
+### 代码构建方法
+
+```c
+// In the project root directory
+make            /* Build client and server */
+make clean      /* Clear object files and executable files */
+```
+
 ### 调试过程演示
 
 > 下面是发布在B站的演示视频，您也可以点击链接以查看部署在阿里云上的[原视频](http://47.95.13.239/Study/Linux/image/lesson11_debug.mp4)
 
 [BiliBili - 命名管道_客户端服务器模型_测试视频](https://www.bilibili.com/video/BV1ne41147xk/)
+
+### 致谢
+
+感谢 @葛晟宏 同学对代码提出的修改意见
