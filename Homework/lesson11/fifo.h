@@ -28,12 +28,13 @@ struct FIFO_Data{
     char message[100];
 };
 
-void Create_FIFO(char *FIFO_Name);
-char* Get_Private_FIFO_Name(int Client_PID);
-void Send_and_Recive_Message(void);
 void sigcatch(int signum);
-char Private_Name[20];
+void Create_FIFO(char *FIFO_Name);
+void Send_and_Recive_Message(void);
+char* Get_Private_FIFO_Name(int Client_PID);
+
 int PublicFd, PrivateFd;
+char Private_Name[20];
 char* Private_FIFO_Name;
 struct FIFO_Data Client_to_Server, Server_to_Client;
 

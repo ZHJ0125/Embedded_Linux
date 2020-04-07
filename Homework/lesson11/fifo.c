@@ -16,7 +16,9 @@
 *   Date: 2020/04/05
 *********************************************************************/
 void Create_FIFO(char *FIFO_Name){
+
     int TempFd;
+
     if((TempFd = open(FIFO_Name, O_RDONLY)) == -1){
         umask(0);
         mknod(FIFO_Name, S_IFIFO|0666, 0);
@@ -25,6 +27,7 @@ void Create_FIFO(char *FIFO_Name){
     else{
         close(TempFd);
     }
+
 }
 
 /********************************************************************
@@ -36,12 +39,15 @@ void Create_FIFO(char *FIFO_Name){
 *   Date: 2020/04/05
 *********************************************************************/
 char* Get_Private_FIFO_Name(int Client_PID){
+
     char TempBuffer[6];
+
     strcpy(Private_Name, PRIVATE_FIFO);
     sprintf(TempBuffer, "%d", Client_PID);
     //printf("TempBuffer is : %s\n", TempBuffer);
     strcat(Private_Name, TempBuffer);
     return Private_Name;
+
 }
 
 /********************************************************************
@@ -53,10 +59,12 @@ char* Get_Private_FIFO_Name(int Client_PID){
 *   Date: 2020/04/05
 *********************************************************************/
 void sigcatch(int num){
+
     printf("\nServer is exiting...\n");
     unlink(PUBLIC_FIFO);
     printf("Removed %s\nSee you again 😉\n\n", PUBLIC_FIFO);
     exit(0);
+
 }
 
 /********************************************************************
@@ -67,7 +75,11 @@ void sigcatch(int num){
 *   Date: 2020/04/05
 *********************************************************************/
 void Send_and_Recive_Message(void){
+    
+    /* Open PUBLIC_FIFO with Write-Only mode */
     if((PublicFd = open(PUBLIC_FIFO, O_WRONLY)) > 0){
+
+        /* Write struct date from Client to Server */
         if(write(PublicFd, &Client_to_Server, sizeof(struct FIFO_Data)) > 0){
             //printf("Success to write client_%d message to server!\n", getpid());
             close(PublicFd);
@@ -96,4 +108,5 @@ void Send_and_Recive_Message(void){
         printf("Fail to open PUBLIC_FIFO\n");
         exit(1);
     }
+
 }
