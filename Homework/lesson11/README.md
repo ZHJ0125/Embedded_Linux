@@ -63,4 +63,9 @@ make clean      /* Clear object files and executable files */
 
 ### 致谢
 
-感谢 @葛晟宏 同学对代码提出的修改意见
+感谢 @葛晟宏 @王文州 同学对代码提出的修改意见
+
+### 开源协议
+
+* 本项目遵循 [GPL](https://github.com/ZHJ0125/Embedded_Linux/blob/master/LICENSE) 开源许可协议
+* 项目地址 [https://github.com/ZHJ0125/Embedded_Linux/tree/master/Homework/lesson11](https://github.com/ZHJ0125/Embedded_Linux/tree/master/Homework/lesson11)
