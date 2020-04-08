@@ -46,7 +46,6 @@
 
 ![lesson11_flow](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson11/lesson11_flow.png)
 
-
 ### 代码构建方法
 
 ```c
@@ -68,4 +67,5 @@ make clean      /* Clear object files and executable files */
 ### 开源协议
 
 * 本项目遵循 [GPL](https://github.com/ZHJ0125/Embedded_Linux/blob/master/LICENSE) 开源许可协议
-* 项目地址 [https://github.com/ZHJ0125/Embedded_Linux/tree/master/Homework/lesson11](https://github.com/ZHJ0125/Embedded_Linux/tree/master/Homework/lesson11)
+* GitHub 仓库地址 [https://github.com/ZHJ0125/Embedded_Linux/tree/master/Homework/lesson11](https://github.com/ZHJ0125/Embedded_Linux/tree/master/Homework/lesson11)
+* Gitee 仓库地址 [https://gitee.com/zhj0125/Embedded_Linux/tree/master/Homework/lesson11](https://gitee.com/zhj0125/Embedded_Linux/tree/master/Homework/lesson11)
