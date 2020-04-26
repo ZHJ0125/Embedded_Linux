@@ -4,16 +4,16 @@ int main(){
     char *shm;
     int shmid;
     int producer, consumer;
-    if((consumer = semget(ftok("consumer", 0), 1, IPC_CREAT|0660)) == -1){
+    if((consumer = semget(8888, 1, IPC_CREAT|0660)) == -1){
         printf("call semget() failed!\n");
         exit(1);
     }
-    // init_a_semaphore(consumer, 0, 1);
-    if((producer = semget(ftok("producer", 0), 1, IPC_CREAT|0660)) == -1){
+    init_a_semaphore(consumer, 0, 0);
+    if((producer = semget(6666, 1, IPC_CREAT|0660)) == -1){
         printf("call semget() failed!\n");
         exit(1);
     }
-    // init_a_semaphore(producer, 0, 1);
+    init_a_semaphore(producer, 0, 0);
     if((shmid = shmget(ftok("shared", 0), SHMSZ, IPC_CREAT|0660)) == -1){
         printf("call shmget() failed!\n");
         exit(1);

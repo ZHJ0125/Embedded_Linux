@@ -6,12 +6,12 @@ int main(){
     int producer, consumer, i;
     char readbuf[SHMSZ];
 
-    if((consumer = semget(ftok("consumer", 0), 1, IPC_CREAT|0660)) == -1){
+    if((consumer = semget(8888, 1, IPC_CREAT|0660)) == -1){
         printf("call semget() failed!\n");
         exit(1);
     }
     init_a_semaphore(consumer, 0, 1);
-    if((producer = semget(ftok("producer", 0), 1, IPC_CREAT|0660)) == -1){
+    if((producer = semget(6666, 1, IPC_CREAT|0660)) == -1){
         printf("call semget() failed!\n");
         exit(1);
     }
