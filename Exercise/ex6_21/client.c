@@ -27,7 +27,7 @@ int main(){
         semaphore_P(producer);
         printf("Data recived: %s", shm);
         fflush(stdout);
-        sleep(1);
+        usleep(100000);
         if(strncmp(shm, "end", 3) == 0){
             break;
         }
