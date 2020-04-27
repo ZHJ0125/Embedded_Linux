@@ -34,7 +34,7 @@ gcc server.c -o server
 gcc client.c -o client
 ```
 
-然后分别在两个终端中运行serve和client。先运行server，在运行client
+然后分别在两个终端中运行serve和client。先运行server，再运行client
 
 最终效果演示：
 
