@@ -1,6 +1,9 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "msg.h": "c",
+        "mqueue.h": "c",
+        "msq.h": "c"
     }
 }
