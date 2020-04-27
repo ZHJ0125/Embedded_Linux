@@ -25,6 +25,17 @@
 
 程序代码在 ***Code目录*** 下，包括`server.c`、`client.c`和`myshm.h`
 
+运行方法：
+
+拷贝Code文件夹下的内容，使用gcc分别编译服务端server和客户端client
+
+```c
+gcc server.c -o server
+gcc client.c -o client
+```
+
+然后分别在两个终端中运行serve和client。先运行server，在运行client
+
 最终效果演示：
 
 ![最终效果](image/12.gif)
