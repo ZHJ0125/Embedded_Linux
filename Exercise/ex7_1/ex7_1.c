@@ -13,7 +13,7 @@ int main(){
     printf("PID is: %d\n", getpid());
     pthread_create(&thread1, NULL, (void*)(&print_message), (void*)msg1);
     pthread_create(&thread2, NULL, (void*)(&print_message), (void*)msg2);
-    sleep(10);  // 延时用来检查进程的数量，是否只有一个进程
+    // sleep(10);  // 延时用来检查进程的数量，是否只有一个进程
     return 0;
 }
 
