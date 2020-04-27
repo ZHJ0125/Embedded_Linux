@@ -6,8 +6,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #define SHMSZ 256
+#define CONSUMER "consumer"
+#define PRODUCER "producer"
+#define SHARED   "shared"
 
 union semun{
     int val;
