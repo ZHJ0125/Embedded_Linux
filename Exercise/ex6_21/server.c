@@ -6,12 +6,12 @@ int main(){
     int producer, consumer, i;
     char readbuf[SHMSZ];
 
-    if((consumer = semget(8888, 1, IPC_CREAT|0660)) == -1){
+    if((consumer = semget(ftok("consumer", 0), 1, IPC_CREAT|0660)) == -1){
         printf("call semget() failed!\n");
         exit(1);
     }
     init_a_semaphore(consumer, 0, 1);
-    if((producer = semget(6666, 1, IPC_CREAT|0660)) == -1){
+    if((producer = semget(ftok("producer", 0), 1, IPC_CREAT|0660)) == -1){
         printf("call semget() failed!\n");
         exit(1);
     }
@@ -26,11 +26,9 @@ int main(){
     }
     for(i=0;;i++){
         printf("Enter text: ");
-        // fgets(readbuf, SHMSZ, stdin);
-        scanf("%s", readbuf);
-        getchar();
+        fgets(readbuf, SHMSZ, stdin);
         semaphore_P(consumer);
-        sprintf(shm, "%s -> Message %d from producer %d\n", readbuf, i, getpid());
+        sprintf(shm, "Message %d from producer %d is %s", i, getpid(), readbuf);
         semaphore_V(producer);
         if(strcmp(readbuf, "end") == 0){
             break;
