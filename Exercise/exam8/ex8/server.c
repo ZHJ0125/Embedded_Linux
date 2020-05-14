@@ -9,6 +9,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #define BUFSIZE 1024
+#define SERVER_IP "192.168.86.129"
+#define SERVER_PORT 6688
+
 int main(int argc, char* argv[]){
     int res = 0;
     int fd = 0;
@@ -27,8 +30,8 @@ int main(int argc, char* argv[]){
     }
 
     svaddr.sin_family = AF_INET;
-    svaddr.sin_port = htons(10000);
-    svaddr.sin_addr.s_addr = inet_addr("192.168.1.88");
+    svaddr.sin_port = htons(SERVER_PORT);
+    svaddr.sin_addr.s_addr = inet_addr(SERVER_IP);
     if(bind(lfd, (struct sockaddr *)&svaddr, sizeof(svaddr)) == -1){
         close(lfd);
         perror("call listen() failed!");
@@ -95,7 +98,7 @@ int main(int argc, char* argv[]){
             if((res = recv(cfd, buf, sizeof(int), MSG_WAITALL)) == -1){
                 close(fd);
                 close(fd);
-                perror("recive file data";
+                perror("recive file data");
                 break;
             }
             else if(res == 0){
@@ -120,10 +123,21 @@ int main(int argc, char* argv[]){
             else{
                 buf[res] = 0;
                 if(write(fd, buf, strlen(buf)) == -1){
-                    
+                    close(fd);
+                    close(cfd);
+                    perror("write()");
+                    break;
                 }
             }
         }
 
+        close(fd);
+        close(cfd);
+
     }
+
+    close(fd);
+    close(lfd);
+
+    exit(0);
 }

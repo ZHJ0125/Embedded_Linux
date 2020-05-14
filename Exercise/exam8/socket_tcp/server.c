@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #define SHAKEHAND_MSG "Welcome to my server\n"
-#define SERVER_IP "47.95.13.239"
+#define SERVER_IP "101.200.50.245"
 #define SERVER_PORT 8888
 
 int main(int argc, char *argv[]){
