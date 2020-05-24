@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <signal.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <string.h>
 #include <unistd.h>
-#define SERVER_IP "101.200.50.245"
-#define SERVER_PORT 8888
+// #define SERVER_IP "127.0.0.1"		// 用于本地测试
+#define SERVER_IP "47.95.13.239"	// 用于公网测试
+#define SERVER_PORT 18888
 
 int main(int argc, char *argv[]){
 	int client_sockfd;
 	int len;
-    char buf[BUFSIZ];                                       //数据传送的缓冲区
+	pid_t pid;
+    char buf_recv[BUFSIZ];                                 	//数据传送的缓冲区
+	char buf_send[BUFSIZ];
 	struct sockaddr_in remote_addr;                         //服务器端网络地址结构体
 	memset(&remote_addr, 0, sizeof(remote_addr));           //数据初始化--清零
 
@@ -31,21 +35,34 @@ int main(int argc, char *argv[]){
 		return 1;
 	}
 	printf("connected to server\n");
-	len = recv(client_sockfd, buf, BUFSIZ, 0);//接收服务器端信息
-    buf[len] = '\0';
-	printf("%s", buf); //打印服务器端的欢迎信息
+	len = recv(client_sockfd, buf_recv, BUFSIZ, 0);			//接收服务器端信息
+    buf_recv[len] = '\0';
+	printf("%s", buf_recv); //打印服务器端的欢迎信息
+	printf("Enter string to send: \n");
 	
-	/*循环的发送接收信息并打印接收信息（可以按需发送）--recv返回接收到的字节数，send返回发送的字节数*/
-	while(1){
-		printf("Enter string to send: ");
-		scanf("%s", buf);
-		if(!strcmp(buf, "quit")){
-            break;
-        }
-		len = send(client_sockfd, buf, strlen(buf), 0);
-		len = recv(client_sockfd, buf, BUFSIZ, 0);
-		buf[len] = '\0';
-		printf("received from server: %s\n", buf);
+	if((pid = fork()) < 0){
+		printf("Fail to call fork()\n");
+		return 1;
+	}
+	else if(pid > 0){
+		// 父进程用来发送数据
+		while(1){
+			scanf("%s", buf_send);
+			if(!strcmp(buf_send, "quit")){
+				kill(pid, SIGSTOP);
+				break;
+			}
+			len = send(client_sockfd, buf_send, strlen(buf_send), 0);
+		}
+	}
+	else{
+		// 子进程用来接收数据
+		while(1){
+			memset(buf_recv, 0, sizeof(buf_recv));
+			len = recv(client_sockfd, buf_recv, BUFSIZ, 0);
+			buf_recv[len] = '\0';
+			printf("Recive from server: %s\n", buf_recv);
+		}
 	}
 
 	/*关闭套接字*/
