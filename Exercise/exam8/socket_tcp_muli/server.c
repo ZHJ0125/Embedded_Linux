@@ -1,38 +1,23 @@
-#include <stdlib.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <sys/socket.h>
-#include <string.h>
-#include <signal.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <pthread.h>
-#define HANDSHARK_MSG "Hello,Client!\n"
-#define SERVER_PORT 18888
-
-void *fun_thrReceiveHandler(void *socketInfo);
-void *fun_thrAcceptHandler(void *socketListen);
-int checkThrIsKill(pthread_t thr);
-int ReadToSend = 0;
-
-typedef struct MySocketInfo{
-    int socketCon;
-    char *ipaddr;
-    uint16_t port;
-}_MySocketInfo;
-
-// 客户端数组
-struct MySocketInfo arrConSocket[10];
-int conClientCount = 0;
-
-// 接受客户端线程列表
-pthread_t arrThrReceiveClient[10];
-int thrReceiveClientCount = 0;
-char buffer[BUFSIZ];
+/********************************************************************
+*   File Name: server.c
+*   Description: 用于实现多客户端通信
+*   Others: 
+*     1. 服务器首先创建套接字并绑定网络信息
+*     2. 之后创建一个子线程用于接收客户端的网络请求
+*     3. 在子线程中接收客户端的网络请求，并为每一个客户端创建新的子线程，该子线程用于服务器接收客户端数据
+*     4. 服务器的主线程用于向所有客户端循环发送数据
+*   Init Date: 2020/05/24
+*********************************************************************/
+#include "mysocket.h"
 
 int main()
 {
+    ReadToSend = 0;
+    conClientCount = 0;
+    thrReceiveClientCount = 0;
+
     printf("Start Server...\n");
+
     /* 创建TCP连接的Socket套接字 */
     int socketListen = socket(AF_INET, SOCK_STREAM, 0);
     if(socketListen < 0){
@@ -44,26 +29,24 @@ int main()
 
     /* 填充服务器端口地址信息，以便下面使用此地址和端口监听 */
     struct sockaddr_in server_addr;
-    // bzero(&server_addr,sizeof(struct sockaddr_in));
     server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = htonl(INADDR_ANY); /* 这里地址使用全0，即所有 */
+    // 这里的地址使用所有本地网络设备的地址，表示服务器会接收任意地址的客户端信息
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     server_addr.sin_port = htons(SERVER_PORT);
 
-    /*将套接字绑定到服务器的网络地址上*/
+    /* 将套接字绑定到服务器的网络地址上 */
     if(bind(socketListen, (struct sockaddr *)&server_addr,sizeof(struct sockaddr)) != 0){
         perror("bind error");
 		exit(-1);
-    }else{
-        printf("call bind() successful\n");
     }
+    printf("call bind() successful\n");
 
     /* 开始监听相应的端口 */
     if(listen(socketListen, 10) != 0){
         perror("call listen()");
         exit(-1);
-    }else{
-        printf("call listen() successful\n");
     }
+    printf("call listen() successful\n");
 
     /* 创建一个线程用来接收客户端的连接请求 */
     pthread_t thrAccept;
@@ -72,7 +55,7 @@ int main()
     /* 主线程用来向所有客户端循环发送数据 */
     while(1){
         if(ReadToSend){
-            //判断线程存活多少
+            // 判断线程存活数量
             int i;
             for(i = 0; i < thrReceiveClientCount; i++){
                 if(checkThrIsKill(arrThrReceiveClient[i])){
@@ -81,22 +64,21 @@ int main()
                 }
             }
             printf("Number of connected client: %d\n", thrReceiveClientCount);
-            // 发送消息
             if(conClientCount <= 0){
                 printf("No Clients!\n");
             }
+
+            // 向所有客户端发送消息
             else{
                 printf("conClientCount = %d\n", conClientCount);
                 for(i = 0; i < conClientCount; i++){
                     printf("socketCon = %d\nbuffer is: %s\n", arrConSocket[i].socketCon, buffer);
-                    int sendMsg_len = send(arrConSocket[i].socketCon, buffer, sizeof(buffer), 0);
-                    // sendMsg_len = send(arrConSocket[i].socketCon, HANDSHARK_MSG, sizeof(HANDSHARK_MSG), 0);
-                    // int sendMsg_len = write(arrConSocket[i].socketCon,HANDSHARK_MSG,30);
+                    int sendMsg_len = send(arrConSocket[i].socketCon, buffer, strlen(buffer), 0);
                     if(sendMsg_len > 0){
-                        printf("向%s:%d发送成功\n", arrConSocket[i].ipaddr, arrConSocket[i].port);
+                        printf("Send Message to %s:%d successful\n", arrConSocket[i].ipaddr, arrConSocket[i].port);
                         ReadToSend = 0;
                     }else{
-                        printf("向%s:%d发送失败\n", arrConSocket[i].ipaddr, arrConSocket[i].port);
+                        printf("Fail to send message to %s:%d\n", arrConSocket[i].ipaddr, arrConSocket[i].port);
                     }
                 }
             }
@@ -104,8 +86,8 @@ int main()
         sleep(0.5);
     }
 
-    // 等待子进程退出
-    printf("等待子线程退出，即将退出！\n");
+    /* 等待子进程退出 */
+    printf("Waiting for child thread to exit ....\n");
     char *message;
     pthread_join(thrAccept,(void *)&message);
     printf("%s\n",message);
@@ -113,14 +95,22 @@ int main()
     return 0;
 }
 
-/* thrAccept线程一直循环接收来自客户端的连接请求 */
+
+
+/********************************************************************
+*   Function Name: void *fun_thrAcceptHandler(void *socketListen)
+*   Description: 监听客户端的连接请求，获取待连接客户端的网络信息，并为该客户端创建子线程.
+*   Called By: server.c[main]
+*   Input: socketListen -> 表示用于监听的被动套接字
+*   Date: 2020/05/24
+*********************************************************************/
 void *fun_thrAcceptHandler(void *socketListen){
     while(1){
         int sockaddr_in_size = sizeof(struct sockaddr_in);
         struct sockaddr_in client_addr;
         int _socketListen = *((int *)socketListen);
 
-        // 连接相应的客户端
+        /* 接收相应的客户端的连接请求 */
         int socketCon = accept(_socketListen, (struct sockaddr *)(&client_addr), (socklen_t *)(&sockaddr_in_size));
         if(socketCon < 0){
             printf("call accept()");
@@ -129,51 +119,66 @@ void *fun_thrAcceptHandler(void *socketListen){
         }
         printf("Client socket: %d\n", socketCon);
 
-        // 获取新客户端的网络信息
+        /* 获取新客户端的网络信息 */
         _MySocketInfo socketInfo;
         socketInfo.socketCon = socketCon;
         socketInfo.ipaddr = inet_ntoa(client_addr.sin_addr);
         socketInfo.port = client_addr.sin_port;
 
-        // 将新客户端的网络信息保存在arrConSocket数组中
+        /* 将新客户端的网络信息保存在 arrConSocket 数组中 */
         arrConSocket[conClientCount] = socketInfo;
         conClientCount++;
-        printf("连接了%d个用户\n",conClientCount);
+        printf("Number of users: %d\n", conClientCount);
 
-        // 为新连接的客户端开辟线程，该线程用来循环接收客户端的数据
+        /* 为新连接的客户端开辟线程 fun_thrReceiveHandler，该线程用来循环接收客户端的数据 */
         pthread_t thrReceive = 0;
         pthread_create(&thrReceive, NULL, fun_thrReceiveHandler, &socketInfo);
         arrThrReceiveClient[thrReceiveClientCount] = thrReceive;
         thrReceiveClientCount ++;
-        printf("已为该用户创建一个线程\n");
+        printf("A thread has been created for the user.\n");
  
-        //让进程休息0.1秒
+        /* 让进程休息0.1秒 */
         usleep(100000);
     }
  
-    char *s = "安全退出接受进程";
+    char *s = "Safe exit from the receive process ...";
     pthread_exit(s);
 }
 
-/* 该线程函数用来循环接收客户端的数据 */
+
+
+/********************************************************************
+*   Function Name: void *fun_thrReceiveHandler(void *socketInfo)
+*   Description: 向服务器发送初始消息，从服务器循环接收信息.
+*   Called By: server.c[main]
+*   Input: socketInfo -> 表示客户端的网络信息
+*   Date: 2020/05/24
+*********************************************************************/
 void *fun_thrReceiveHandler(void *socketInfo){
 	int buffer_length;
     int con;
     int i;
 	_MySocketInfo _socketInfo = *((_MySocketInfo *)socketInfo);
+
+    /* 向服务器发送握手消息 */
     send(_socketInfo.socketCon, HANDSHARK_MSG, sizeof(HANDSHARK_MSG), 0);
 
+    /* 从服务器循环接收消息 */
     while(1){
-    	//添加对buffer清零
+
+    	// 将接收缓冲区buffer清空
     	bzero(&buffer,sizeof(buffer));
 
-        printf("正在读取客户端消息，客户端标识符%d\n", _socketInfo.socketCon);
+        // 接收服务器信息
+        printf("Receiving messages from client %d ...\n", _socketInfo.socketCon);
         buffer_length = recv(_socketInfo.socketCon, buffer, BUFSIZ, 0);
         if(buffer_length == 0){
+            // 判断为客户端退出
             printf("%s:%d Closed!\n", _socketInfo.ipaddr, _socketInfo.port);
+            // 找到该客户端在数组中的位置
             for(con = 0; con < conClientCount; con++){
                 if(arrConSocket[con].socketCon == _socketInfo.socketCon){
-                    break;  // 找到该客户端在数组中的位置
+                    break;
                 }
             }
             // 将该客户端的信息删除，重置客户端数组
@@ -189,13 +194,22 @@ void *fun_thrReceiveHandler(void *socketInfo){
         }
         buffer[buffer_length] = '\0';
         printf("%s:%d said：%s\n", _socketInfo.ipaddr, _socketInfo.port, buffer);
-        ReadToSend = 1;
+        ReadToSend = 1;     // 发送标志置位，允许主线程发送数据
         usleep(100000);
     }
     printf("%s:%d Exit\n", _socketInfo.ipaddr, _socketInfo.port);
     return NULL;
 }
- 
+
+
+
+/********************************************************************
+*   Function Name: checkThrIsKill(pthread_t thr)
+*   Description: 检测当前线程是否存活.
+*   Called By: server.c[main]
+*   Input: thr -> 线程数组中的线程
+*   Date: 2020/05/24
+*********************************************************************/
 int checkThrIsKill(pthread_t thr){
     int res = 1;
     int res_kill = pthread_kill(thr, 0);
