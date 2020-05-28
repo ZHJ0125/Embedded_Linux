@@ -44,7 +44,7 @@ int main(){
 */
 int readcmd(void){
     char c, *p;
-    int i = 0;          // I 表示命令的个数
+    int i = 0;                          // I 表示命令的个数
     p = cmdbuf[0];                      // 清除命令缓冲数组中的数据
     while ((c = getchar()) != '\n'){    // 开始读命令,以回车结束
         // 判定为下一个命令
