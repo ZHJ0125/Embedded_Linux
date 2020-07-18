@@ -1,0 +1,942 @@
+zhj@thinkpad-vmware:~$ tree -L 1
+
+Command 'tree' not found, but can be installed with:
+
+sudo snap install tree  # version 1.8.0+pkg-3fd6, or
+sudo apt  install tree
+
+See 'snap info tree' for additional versions.
+
+zhj@thinkpad-vmware:~$ sudo apt install tree
+[sudo] password for zhj: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libdumbnet1 libjbig-dev libjpeg62 libllvm8 liblzma-dev libtiffxx5
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  tree
+0 upgraded, 1 newly installed, 0 to remove and 3 not upgraded.
+Need to get 40.7 kB of archives.
+After this operation, 105 kB of additional disk space will be used.
+Get:1 http://mirrors.aliyun.com/ubuntu bionic/universe amd64 tree amd64 1.7.0-5 [40.7 kB]
+Fetched 40.7 kB in 0s (126 kB/s)
+Selecting previously unselected package tree.
+(Reading database ... 172491 files and directories currently installed.)
+Preparing to unpack .../tree_1.7.0-5_amd64.deb ...
+Unpacking tree (1.7.0-5) ...
+Setting up tree (1.7.0-5) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+zhj@thinkpad-vmware:~$ cd /
+zhj@thinkpad-vmware:/$ tree -L 1
+.
+├── bin
+├── boot
+├── cdrom
+├── dev
+├── etc
+├── home
+├── initrd.img -> boot/initrd.img-5.3.0-28-generic
+├── initrd.img.old -> boot/initrd.img-5.0.0-32-generic
+├── lib
+├── lib64
+├── lost+found
+├── media
+├── mnt
+├── opt
+├── proc
+├── root
+├── run
+├── sbin
+├── snap
+├── srv
+├── swapfile
+├── sys
+├── tmp
+├── usr
+├── var
+├── vmlinuz -> boot/vmlinuz-5.3.0-28-generic
+└── vmlinuz.old -> boot/vmlinuz-5.0.0-32-generic
+
+22 directories, 5 files
+zhj@thinkpad-vmware:/$ cd
+zhj@thinkpad-vmware:~$ ls
+Desktop           helloworld    Music           opencv_contrib.zip  Templates
+Documents         helloworld.c  my_pstree       opencv.zip          Videos
+Downloads         Linux_Class   opencv          Pictures
+face_recognition  ls_list       opencv_contrib  Public
+zhj@thinkpad-vmware:~$ cat my_pstree 
+systemd-+-ModemManager---2*[{ModemManager}]
+        |-NetworkManager-+-dhclient
+        |                `-2*[{NetworkManager}]
+        |-VGAuthService
+        |-accounts-daemon---2*[{accounts-daemon}]
+        |-acpid
+        |-avahi-daemon---avahi-daemon
+        |-bluetoothd
+        |-boltd---2*[{boltd}]
+        |-colord---2*[{colord}]
+        |-cron
+        |-cups-browsed---2*[{cups-browsed}]
+        |-cupsd
+        |-2*[dbus-daemon]
+        |-fcitx---{fcitx}
+        |-fcitx-dbus-watc
+        |-fwupd---4*[{fwupd}]
+        |-gdm3-+-gdm-session-wor-+-gdm-wayland-ses-+-gnome-session-b-+-gnome-shell-+-Xwayland---2*[{Xwayland}]
+        |      |                 |                 |                 |             |-ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |      |                 |                 |                 |             |             |-ibus-engine-sim---2*[{ibus-engin+
+        |      |                 |                 |                 |             |             `-2*[{ibus-daemon}]
+        |      |                 |                 |                 |             `-10*[{gnome-shell}]
+        |      |                 |                 |                 |-gsd-a11y-settin---3*[{gsd-a11y-settin}]
+        |      |                 |                 |                 |-gsd-clipboard---2*[{gsd-clipboard}]
+        |      |                 |                 |                 |-gsd-color---3*[{gsd-color}]
+        |      |                 |                 |                 |-gsd-datetime---2*[{gsd-datetime}]
+        |      |                 |                 |                 |-gsd-housekeepin---2*[{gsd-housekeepin}]
+        |      |                 |                 |                 |-gsd-keyboard---3*[{gsd-keyboard}]
+        |      |                 |                 |                 |-gsd-media-keys---3*[{gsd-media-keys}]
+        |      |                 |                 |                 |-gsd-mouse---2*[{gsd-mouse}]
+        |      |                 |                 |                 |-gsd-power---3*[{gsd-power}]
+        |      |                 |                 |                 |-gsd-print-notif---2*[{gsd-print-notif}]
+        |      |                 |                 |                 |-gsd-rfkill---2*[{gsd-rfkill}]
+        |      |                 |                 |                 |-gsd-screensaver---2*[{gsd-screensaver}]
+        |      |                 |                 |                 |-gsd-sharing---3*[{gsd-sharing}]
+        |      |                 |                 |                 |-gsd-smartcard---4*[{gsd-smartcard}]
+        |      |                 |                 |                 |-gsd-sound---3*[{gsd-sound}]
+        |      |                 |                 |                 |-gsd-wacom---2*[{gsd-wacom}]
+        |      |                 |                 |                 |-gsd-xsettings---3*[{gsd-xsettings}]
+        |      |                 |                 |                 `-3*[{gnome-session-b}]
+        |      |                 |                 `-2*[{gdm-wayland-ses}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      |-gdm-session-wor-+-gdm-x-session-+-Xorg---{Xorg}
+        |      |                 |               |-gnome-session-b-+-gnome-shell-+-ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |      |                 |               |                 |             |             |-ibus-engine-sim---2*[{ibus-engine-+
+        |      |                 |               |                 |             |             `-2*[{ibus-daemon}]
+        |      |                 |               |                 |             `-10*[{gnome-shell}]
+        |      |                 |               |                 |-gnome-software---3*[{gnome-software}]
+        |      |                 |               |                 |-gsd-a11y-settin---3*[{gsd-a11y-settin}]
+        |      |                 |               |                 |-gsd-clipboard---2*[{gsd-clipboard}]
+        |      |                 |               |                 |-gsd-color---3*[{gsd-color}]
+        |      |                 |               |                 |-gsd-datetime---3*[{gsd-datetime}]
+        |      |                 |               |                 |-gsd-disk-utilit---2*[{gsd-disk-utilit}]
+        |      |                 |               |                 |-gsd-housekeepin---3*[{gsd-housekeepin}]
+        |      |                 |               |                 |-gsd-keyboard---3*[{gsd-keyboard}]
+        |      |                 |               |                 |-gsd-media-keys---3*[{gsd-media-keys}]
+        |      |                 |               |                 |-gsd-mouse---3*[{gsd-mouse}]
+        |      |                 |               |                 |-gsd-power---3*[{gsd-power}]
+        |      |                 |               |                 |-gsd-print-notif---2*[{gsd-print-notif}]
+        |      |                 |               |                 |-gsd-rfkill---2*[{gsd-rfkill}]
+        |      |                 |               |                 |-gsd-screensaver---2*[{gsd-screensaver}]
+        |      |                 |               |                 |-gsd-sharing---3*[{gsd-sharing}]
+        |      |                 |               |                 |-gsd-smartcard---4*[{gsd-smartcard}]
+        |      |                 |               |                 |-gsd-sound---3*[{gsd-sound}]
+        |      |                 |               |                 |-gsd-wacom---2*[{gsd-wacom}]
+        |      |                 |               |                 |-gsd-xsettings---3*[{gsd-xsettings}]
+        |      |                 |               |                 |-indicator-messa---3*[{indicator-messa}]
+        |      |                 |               |                 |-nautilus-deskto---3*[{nautilus-deskto}]
+        |      |                 |               |                 |-ssh-agent
+        |      |                 |               |                 |-update-notifier---3*[{update-notifier}]
+        |      |                 |               |                 |-zeitgeist-datah---4*[{zeitgeist-datah}]
+        |      |                 |               |                 `-3*[{gnome-session-b}]
+        |      |                 |               `-2*[{gdm-x-session}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      `-2*[{gdm3}]
+        |-gnome-keyring-d---3*[{gnome-keyring-d}]
+        |-gsd-printer---2*[{gsd-printer}]
+        |-2*[ibus-x11---2*[{ibus-x11}]]
+        |-irqbalance---{irqbalance}
+        |-2*[kerneloops]
+        |-networkd-dispat---{networkd-dispat}
+        |-packagekitd---2*[{packagekitd}]
+        |-polkitd---2*[{polkitd}]
+        |-pulseaudio---2*[{pulseaudio}]
+        |-rsyslogd---3*[{rsyslogd}]
+        |-rtkit-daemon---2*[{rtkit-daemon}]
+        |-sh---python3---3*[{python3}]
+        |-snapd---13*[{snapd}]
+        |-sogou-qimpanel---13*[{sogou-qimpanel}]
+        |-sogou-qimpanel-
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 `-3*[{at-spi-bus-laun}]
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-dbus-daemon
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-pulseaudio---2*[{pulseaudio}]
+        |         `-xdg-permission----2*[{xdg-permission-}]
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 `-3*[{at-spi-bus-laun}]
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-2*[dbus-daemon]
+        |         |-dbus-launch
+        |         |-dconf-service---2*[{dconf-service}]
+        |         |-evolution-addre-+-evolution-addre---5*[{evolution-addre}]
+        |         |                 `-4*[{evolution-addre}]
+        |         |-evolution-calen-+-evolution-calen---8*[{evolution-calen}]
+        |         |                 `-4*[{evolution-calen}]
+        |         |-evolution-sourc---3*[{evolution-sourc}]
+        |         |-gnome-shell-cal---5*[{gnome-shell-cal}]
+        |         |-gnome-terminal--+-bash---sh---pstree
+        |         |                 `-3*[{gnome-terminal-}]
+        |         |-goa-daemon---3*[{goa-daemon}]
+        |         |-goa-identity-se---3*[{goa-identity-se}]
+        |         |-gvfs-afc-volume---3*[{gvfs-afc-volume}]
+        |         |-gvfs-goa-volume---2*[{gvfs-goa-volume}]
+        |         |-gvfs-gphoto2-vo---2*[{gvfs-gphoto2-vo}]
+        |         |-gvfs-mtp-volume---2*[{gvfs-mtp-volume}]
+        |         |-gvfs-udisks2-vo---2*[{gvfs-udisks2-vo}]
+        |         |-gvfsd-+-gvfsd-http---2*[{gvfsd-http}]
+        |         |       |-gvfsd-trash---2*[{gvfsd-trash}]
+        |         |       `-2*[{gvfsd}]
+        |         |-gvfsd-fuse---5*[{gvfsd-fuse}]
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-xdg-permission----2*[{xdg-permission-}]
+        |         |-zeitgeist-daemo---2*[{zeitgeist-daemo}]
+        |         `-zeitgeist-fts---2*[{zeitgeist-fts}]
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-network
+        |-systemd-resolve
+        |-systemd-timesyn---{systemd-timesyn}
+        |-systemd-udevd
+        |-udisksd---4*[{udisksd}]
+        |-unattended-upgr---{unattended-upgr}
+        |-upowerd---2*[{upowerd}]
+        |-vmtoolsd---2*[{vmtoolsd}]
+        |-vmtoolsd---3*[{vmtoolsd}]
+        |-vmware-vmblock----2*[{vmware-vmblock-}]
+        |-whoopsie---2*[{whoopsie}]
+        `-wpa_supplicant
+zhj@thinkpad-vmware:~$ more my_pstree 
+systemd-+-ModemManager---2*[{ModemManager}]
+        |-NetworkManager-+-dhclient
+        |                `-2*[{NetworkManager}]
+        |-VGAuthService
+        |-accounts-daemon---2*[{accounts-daemon}]
+        |-acpid
+        |-avahi-daemon---avahi-daemon
+        |-bluetoothd
+        |-boltd---2*[{boltd}]
+        |-colord---2*[{colord}]
+        |-cron
+        |-cups-browsed---2*[{cups-browsed}]
+        |-cupsd
+        |-2*[dbus-daemon]
+        |-fcitx---{fcitx}
+        |-fcitx-dbus-watc
+        |-fwupd---4*[{fwupd}]
+        |-gdm3-+-gdm-session-wor-+-gdm-wayland-ses-+-gnome-session-b-+-gnome-she
+ll-+-Xwayland---2*[{Xwayland}]
+        |      |                 |                 |                 |          
+   |-ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |      |                 |                 |                 |          
+   |             |-ibus-engine-sim---2*[{ibus-engin+
+        |      |                 |                 |                 |          
+   |             `-2*[{ibus-daemon}]
+        |      |                 |                 |                 |          
+   `-10*[{gnome-shell}]
+        |      |                 |                 |                 |-gsd-a11y-
+settin---3*[{gsd-a11y-settin}]
+        |      |                 |                 |                 |-gsd-clipb
+oard---2*[{gsd-clipboard}]
+        |      |                 |                 |                 |-gsd-color
+---3*[{gsd-color}]
+        |      |                 |                 |                 |-gsd-datet
+ime---2*[{gsd-datetime}]
+        |      |                 |                 |                 |-gsd-house
+keepin---2*[{gsd-housekeepin}]
+        |      |                 |                 |                 |-gsd-keybo
+ard---3*[{gsd-keyboard}]
+        |      |                 |                 |                 |-gsd-media
+-keys---3*[{gsd-media-keys}]
+        |      |                 |                 |                 |-gsd-mouse
+---2*[{gsd-mouse}]
+        |      |                 |                 |                 |-gsd-power
+---3*[{gsd-power}]
+        |      |                 |                 |                 |-gsd-print
+-notif---2*[{gsd-print-notif}]
+        |      |                 |                 |                 |-gsd-rfkil
+l---2*[{gsd-rfkill}]
+        |      |                 |                 |                 |-gsd-scree
+nsaver---2*[{gsd-screensaver}]
+        |      |                 |                 |                 |-gsd-shari
+ng---3*[{gsd-sharing}]
+        |      |                 |                 |                 |-gsd-smart
+card---4*[{gsd-smartcard}]
+        |      |                 |                 |                 |-gsd-sound
+---3*[{gsd-sound}]
+        |      |                 |                 |                 |-gsd-wacom
+---2*[{gsd-wacom}]
+        |      |                 |                 |                 |-gsd-xsett
+ings---3*[{gsd-xsettings}]
+        |      |                 |                 |                 `-3*[{gnome
+-session-b}]
+        |      |                 |                 `-2*[{gdm-wayland-ses}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      |-gdm-session-wor-+-gdm-x-session-+-Xorg---{Xorg}
+        |      |                 |               |-gnome-session-b-+-gnome-shell
+-+-ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |      |                 |               |                 |            
+ |             |-ibus-engine-sim---2*[{ibus-engine-+
+        |      |                 |               |                 |            
+ |             `-2*[{ibus-daemon}]
+        |      |                 |               |                 |            
+ `-10*[{gnome-shell}]
+        |      |                 |               |                 |-gnome-softw
+are---3*[{gnome-software}]
+        |      |                 |               |                 |-gsd-a11y-se
+ttin---3*[{gsd-a11y-settin}]
+        |      |                 |               |                 |-gsd-clipboa
+rd---2*[{gsd-clipboard}]
+        |      |                 |               |                 |-gsd-color--
+-3*[{gsd-color}]
+        |      |                 |               |                 |-gsd-datetim
+e---3*[{gsd-datetime}]
+        |      |                 |               |                 |-gsd-disk-ut
+ilit---2*[{gsd-disk-utilit}]
+        |      |                 |               |                 |-gsd-houseke
+epin---3*[{gsd-housekeepin}]
+        |      |                 |               |                 |-gsd-keyboar
+d---3*[{gsd-keyboard}]
+        |      |                 |               |                 |-gsd-media-k
+eys---3*[{gsd-media-keys}]
+        |      |                 |               |                 |-gsd-mouse--
+-3*[{gsd-mouse}]
+        |      |                 |               |                 |-gsd-power--
+-3*[{gsd-power}]
+        |      |                 |               |                 |-gsd-print-n
+otif---2*[{gsd-print-notif}]
+        |      |                 |               |                 |-gsd-rfkill-
+--2*[{gsd-rfkill}]
+        |      |                 |               |                 |-gsd-screens
+aver---2*[{gsd-screensaver}]
+        |      |                 |               |                 |-gsd-sharing
+---3*[{gsd-sharing}]
+        |      |                 |               |                 |-gsd-smartca
+rd---4*[{gsd-smartcard}]
+        |      |                 |               |                 |-gsd-sound--
+-3*[{gsd-sound}]
+        |      |                 |               |                 |-gsd-wacom--
+-2*[{gsd-wacom}]
+        |      |                 |               |                 |-gsd-xsettin
+gs---3*[{gsd-xsettings}]
+        |      |                 |               |                 |-indicator-m
+essa---3*[{indicator-messa}]
+        |      |                 |               |                 |-nautilus-de
+skto---3*[{nautilus-deskto}]
+        |      |                 |               |                 |-ssh-agent
+        |      |                 |               |                 |-update-noti
+fier---3*[{update-notifier}]
+        |      |                 |               |                 |-zeitgeist-d
+atah---4*[{zeitgeist-datah}]
+        |      |                 |               |                 `-3*[{gnome-s
+ession-b}]
+        |      |                 |               `-2*[{gdm-x-session}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      `-2*[{gdm3}]
+        |-gnome-keyring-d---3*[{gnome-keyring-d}]
+        |-gsd-printer---2*[{gsd-printer}]
+        |-2*[ibus-x11---2*[{ibus-x11}]]
+        |-irqbalance---{irqbalance}
+        |-2*[kerneloops]
+        |-networkd-dispat---{networkd-dispat}
+        |-packagekitd---2*[{packagekitd}]
+        |-polkitd---2*[{polkitd}]
+        |-pulseaudio---2*[{pulseaudio}]
+        |-rsyslogd---3*[{rsyslogd}]
+        |-rtkit-daemon---2*[{rtkit-daemon}]
+        |-sh---python3---3*[{python3}]
+        |-snapd---13*[{snapd}]
+        |-sogou-qimpanel---13*[{sogou-qimpanel}]
+        |-sogou-qimpanel-
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 `-3*[{at-spi-bus-laun}]
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-dbus-daemon
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-pulseaudio---2*[{pulseaudio}]
+        |         `-xdg-permission----2*[{xdg-permission-}]
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 `-3*[{at-spi-bus-laun}]
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-2*[dbus-daemon]
+        |         |-dbus-launch
+        |         |-dconf-service---2*[{dconf-service}]
+        |         |-evolution-addre-+-evolution-addre---5*[{evolution-addre}]
+        |         |                 `-4*[{evolution-addre}]
+        |         |-evolution-calen-+-evolution-calen---8*[{evolution-calen}]
+        |         |                 `-4*[{evolution-calen}]
+        |         |-evolution-sourc---3*[{evolution-sourc}]
+        |         |-gnome-shell-cal---5*[{gnome-shell-cal}]
+        |         |-gnome-terminal--+-bash---sh---pstree
+        |         |                 `-3*[{gnome-terminal-}]
+        |         |-goa-daemon---3*[{goa-daemon}]
+        |         |-goa-identity-se---3*[{goa-identity-se}]
+        |         |-gvfs-afc-volume---3*[{gvfs-afc-volume}]
+        |         |-gvfs-goa-volume---2*[{gvfs-goa-volume}]
+        |         |-gvfs-gphoto2-vo---2*[{gvfs-gphoto2-vo}]
+        |         |-gvfs-mtp-volume---2*[{gvfs-mtp-volume}]
+        |         |-gvfs-udisks2-vo---2*[{gvfs-udisks2-vo}]
+        |         |-gvfsd-+-gvfsd-http---2*[{gvfsd-http}]
+        |         |       |-gvfsd-trash---2*[{gvfsd-trash}]
+        |         |       `-2*[{gvfsd}]
+        |         |-gvfsd-fuse---5*[{gvfsd-fuse}]
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-xdg-permission----2*[{xdg-permission-}]
+        |         |-zeitgeist-daemo---2*[{zeitgeist-daemo}]
+        |         `-zeitgeist-fts---2*[{zeitgeist-fts}]
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-network
+        |-systemd-resolve
+        |-systemd-timesyn---{systemd-timesyn}
+        |-systemd-udevd
+        |-udisksd---4*[{udisksd}]
+        |-unattended-upgr---{unattended-upgr}
+        |-upowerd---2*[{upowerd}]
+        |-vmtoolsd---2*[{vmtoolsd}]
+        |-vmtoolsd---3*[{vmtoolsd}]
+        |-vmware-vmblock----2*[{vmware-vmblock-}]
+        |-whoopsie---2*[{whoopsie}]
+        `-wpa_supplicant
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ 
+zhj@thinkpad-vmware:~$ less my_pstree 
+zhj@thinkpad-vmware:~$ man ls
+zhj@thinkpad-vmware:~$ info ls
+zhj@thinkpad-vmware:~$ ls
+Desktop           helloworld    Music           opencv_contrib.zip  Templates
+Documents         helloworld.c  my_pstree       opencv.zip          Videos
+Downloads         Linux_Class   opencv          Pictures
+face_recognition  ls_list       opencv_contrib  Public
+zhj@thinkpad-vmware:~$ ls -l
+total 147148
+drwxr-xr-x  2 zhj zhj     4096 Oct 29 15:57 Desktop
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Documents
+drwxr-xr-x  2 zhj zhj     4096 Feb  9 11:58 Downloads
+drwxr-xr-x  8 zhj zhj     4096 Oct 29 19:11 face_recognition
+-rwxr-xr-x  1 zhj zhj     8312 Feb 11 08:43 helloworld
+-rw-r--r--  1 zhj zhj       84 Feb 11 08:43 helloworld.c
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 20:55 Linux_Class
+-rw-r--r--  1 zhj zhj      195 Feb 11 08:40 ls_list
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Music
+-rw-r--r--  1 zhj zhj     9518 Feb 11 08:37 my_pstree
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 11:48 opencv
+drwxr-xr-x  6 zhj zhj     4096 Nov 17  2018 opencv_contrib
+-rw-r--r--  1 zhj zhj 58466581 Oct 28 21:05 opencv_contrib.zip
+-rw-r--r--  1 zhj zhj 92123950 Oct 28 20:56 opencv.zip
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Pictures
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Public
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Templates
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Videos
+zhj@thinkpad-vmware:~$ mkdir
+mkdir: missing operand
+Try 'mkdir --help' for more information.
+zhj@thinkpad-vmware:~$ mkdir test
+zhj@thinkpad-vmware:~$ ls
+Desktop           helloworld    Music           opencv_contrib.zip  Templates
+Documents         helloworld.c  my_pstree       opencv.zip          test
+Downloads         Linux_Class   opencv          Pictures            Videos
+face_recognition  ls_list       opencv_contrib  Public
+zhj@thinkpad-vmware:~$ ls -l
+total 147152
+drwxr-xr-x  2 zhj zhj     4096 Oct 29 15:57 Desktop
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Documents
+drwxr-xr-x  2 zhj zhj     4096 Feb  9 11:58 Downloads
+drwxr-xr-x  8 zhj zhj     4096 Oct 29 19:11 face_recognition
+-rwxr-xr-x  1 zhj zhj     8312 Feb 11 08:43 helloworld
+-rw-r--r--  1 zhj zhj       84 Feb 11 08:43 helloworld.c
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 20:55 Linux_Class
+-rw-r--r--  1 zhj zhj      195 Feb 11 08:40 ls_list
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Music
+-rw-r--r--  1 zhj zhj     9518 Feb 11 08:37 my_pstree
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 11:48 opencv
+drwxr-xr-x  6 zhj zhj     4096 Nov 17  2018 opencv_contrib
+-rw-r--r--  1 zhj zhj 58466581 Oct 28 21:05 opencv_contrib.zip
+-rw-r--r--  1 zhj zhj 92123950 Oct 28 20:56 opencv.zip
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Pictures
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Public
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Templates
+drwxr-xr-x  2 zhj zhj     4096 Feb 11 09:06 test
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Videos
+zhj@thinkpad-vmware:~$ rmdir test/
+zhj@thinkpad-vmware:~$ ls
+Desktop           helloworld    Music           opencv_contrib.zip  Templates
+Documents         helloworld.c  my_pstree       opencv.zip          Videos
+Downloads         Linux_Class   opencv          Pictures
+face_recognition  ls_list       opencv_contrib  Public
+zhj@thinkpad-vmware:~$ cd ..
+zhj@thinkpad-vmware:/home$ cd /
+zhj@thinkpad-vmware:/$ cd
+zhj@thinkpad-vmware:~$ touch ccc
+zhj@thinkpad-vmware:~$ ls -l
+total 147148
+-rw-r--r--  1 zhj zhj        0 Feb 11 09:08 ccc
+drwxr-xr-x  2 zhj zhj     4096 Oct 29 15:57 Desktop
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Documents
+drwxr-xr-x  2 zhj zhj     4096 Feb  9 11:58 Downloads
+drwxr-xr-x  8 zhj zhj     4096 Oct 29 19:11 face_recognition
+-rwxr-xr-x  1 zhj zhj     8312 Feb 11 08:43 helloworld
+-rw-r--r--  1 zhj zhj       84 Feb 11 08:43 helloworld.c
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 20:55 Linux_Class
+-rw-r--r--  1 zhj zhj      195 Feb 11 08:40 ls_list
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Music
+-rw-r--r--  1 zhj zhj     9518 Feb 11 08:37 my_pstree
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 11:48 opencv
+drwxr-xr-x  6 zhj zhj     4096 Nov 17  2018 opencv_contrib
+-rw-r--r--  1 zhj zhj 58466581 Oct 28 21:05 opencv_contrib.zip
+-rw-r--r--  1 zhj zhj 92123950 Oct 28 20:56 opencv.zip
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Pictures
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Public
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Templates
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Videos
+zhj@thinkpad-vmware:~$ ps -aux
+USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          1  0.0  0.2 225696  5564 ?        Ss   04:45   0:05 /sbin/init aut
+root          2  0.0  0.0      0     0 ?        S    04:45   0:00 [kthreadd]
+root          3  0.0  0.0      0     0 ?        I<   04:45   0:00 [rcu_gp]
+root          4  0.0  0.0      0     0 ?        I<   04:45   0:00 [rcu_par_gp]
+root          6  0.0  0.0      0     0 ?        I<   04:45   0:00 [kworker/0:0H-
+root          9  0.0  0.0      0     0 ?        I<   04:45   0:00 [mm_percpu_wq]
+root         10  0.0  0.0      0     0 ?        S    04:45   0:01 [ksoftirqd/0]
+root         11  0.1  0.0      0     0 ?        I    04:45   0:26 [rcu_sched]
+root         12  0.0  0.0      0     0 ?        S    04:45   0:00 [migration/0]
+root         13  0.0  0.0      0     0 ?        S    04:45   0:00 [idle_inject/0
+root         14  0.0  0.0      0     0 ?        S    04:45   0:00 [cpuhp/0]
+root         15  0.0  0.0      0     0 ?        S    04:45   0:00 [cpuhp/1]
+root         16  0.0  0.0      0     0 ?        S    04:45   0:00 [idle_inject/1
+root         17  0.0  0.0      0     0 ?        S    04:45   0:00 [migration/1]
+root         18  0.0  0.0      0     0 ?        S    04:45   0:03 [ksoftirqd/1]
+root         20  0.0  0.0      0     0 ?        I<   04:45   0:00 [kworker/1:0H-
+root         21  0.0  0.0      0     0 ?        S    04:45   0:00 [kdevtmpfs]
+root         22  0.0  0.0      0     0 ?        I<   04:45   0:00 [netns]
+root         23  0.0  0.0      0     0 ?        S    04:45   0:00 [rcu_tasks_kth
+root         24  0.0  0.0      0     0 ?        S    04:45   0:00 [kauditd]
+root         26  0.0  0.0      0     0 ?        S    04:45   0:00 [khungtaskd]
+root         27  0.0  0.0      0     0 ?        S    04:45   0:00 [oom_reaper]
+root         28  0.0  0.0      0     0 ?        I<   04:45   0:00 [writeback]
+root         29  0.0  0.0      0     0 ?        S    04:45   0:00 [kcompactd0]
+root         30  0.0  0.0      0     0 ?        SN   04:45   0:00 [ksmd]
+root         31  0.0  0.0      0     0 ?        SN   04:45   0:00 [khugepaged]
+root        124  0.0  0.0      0     0 ?        I<   04:45   0:00 [kintegrityd]
+root        125  0.0  0.0      0     0 ?        I<   04:45   0:00 [kblockd]
+root        126  0.0  0.0      0     0 ?        I<   04:45   0:00 [blkcg_punt_bi
+root        127  0.0  0.0      0     0 ?        I<   04:45   0:00 [tpm_dev_wq]
+root        128  0.0  0.0      0     0 ?        I<   04:45   0:00 [ata_sff]
+root        129  0.0  0.0      0     0 ?        I<   04:45   0:00 [md]
+root        130  0.0  0.0      0     0 ?        I<   04:45   0:00 [edac-poller]
+root        131  0.0  0.0      0     0 ?        I<   04:45   0:00 [devfreq_wq]
+root        132  0.0  0.0      0     0 ?        S    04:45   0:00 [watchdogd]
+root        135  0.0  0.0      0     0 ?        S    04:45   0:15 [kswapd0]
+root        137  0.0  0.0      0     0 ?        S    04:45   0:00 [ecryptfs-kthr
+root        140  0.0  0.0      0     0 ?        I<   04:45   0:00 [kthrotld]
+root        141  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/24-pciehp
+root        142  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/25-pciehp
+root        143  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/26-pciehp
+root        144  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/27-pciehp
+root        145  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/28-pciehp
+root        146  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/29-pciehp
+root        147  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/30-pciehp
+root        148  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/31-pciehp
+root        149  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/32-pciehp
+root        150  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/33-pciehp
+root        151  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/34-pciehp
+root        152  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/35-pciehp
+root        153  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/36-pciehp
+root        154  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/37-pciehp
+root        155  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/38-pciehp
+root        156  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/39-pciehp
+root        157  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/40-pciehp
+root        158  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/41-pciehp
+root        159  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/42-pciehp
+root        160  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/43-pciehp
+root        161  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/44-pciehp
+root        162  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/45-pciehp
+root        163  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/46-pciehp
+root        164  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/47-pciehp
+root        165  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/48-pciehp
+root        166  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/49-pciehp
+root        167  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/50-pciehp
+root        168  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/51-pciehp
+root        169  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/52-pciehp
+root        170  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/53-pciehp
+root        171  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/54-pciehp
+root        172  0.0  0.0      0     0 ?        S    04:45   0:00 [irq/55-pciehp
+root        173  0.0  0.0      0     0 ?        I<   04:45   0:00 [acpi_thermal_
+root        174  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_0]
+root        175  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_0]
+root        176  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_1]
+root        177  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_1]
+root        179  0.0  0.0      0     0 ?        I<   04:45   0:00 [ipv6_addrconf
+root        191  0.0  0.0      0     0 ?        I<   04:45   0:00 [kstrp]
+root        210  0.0  0.0      0     0 ?        I<   04:45   0:00 [charger_manag
+root        261  0.0  0.0      0     0 ?        I<   04:45   0:00 [mpt_poll_0]
+root        262  0.0  0.0      0     0 ?        I<   04:45   0:00 [mpt/0]
+root        263  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_2]
+root        264  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_2]
+root        265  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_3]
+root        266  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_3]
+root        267  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_4]
+root        268  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_4]
+root        269  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_5]
+root        270  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_5]
+root        271  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_6]
+root        272  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_6]
+root        273  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_7]
+root        274  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_7]
+root        275  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_8]
+root        276  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_8]
+root        277  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_9]
+root        278  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_9]
+root        279  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_10]
+root        280  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_10]
+root        281  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_11]
+root        282  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_11]
+root        283  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_12]
+root        284  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_12]
+root        285  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_13]
+root        286  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_13]
+root        287  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_14]
+root        288  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_14]
+root        289  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_15]
+root        290  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_15]
+root        291  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_16]
+root        292  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_16]
+root        293  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_17]
+root        294  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_17]
+root        295  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_18]
+root        296  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_18]
+root        297  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_19]
+root        298  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_19]
+root        299  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_20]
+root        300  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_20]
+root        301  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_21]
+root        302  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_21]
+root        303  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_22]
+root        304  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_22]
+root        305  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_23]
+root        306  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_23]
+root        307  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_24]
+root        308  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_24]
+root        309  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_25]
+root        310  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_25]
+root        311  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_26]
+root        312  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_26]
+root        313  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_27]
+root        314  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_27]
+root        315  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_28]
+root        316  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_28]
+root        317  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_29]
+root        318  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_29]
+root        319  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_30]
+root        320  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_30]
+root        321  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_31]
+root        322  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_31]
+root        350  0.2  0.0      0     0 ?        I<   04:45   0:32 [kworker/0:1H-
+root        351  0.0  0.0      0     0 ?        S    04:45   0:00 [scsi_eh_32]
+root        352  0.0  0.0      0     0 ?        I<   04:45   0:00 [scsi_tmf_32]
+root        354  0.2  0.0      0     0 ?        I<   04:45   0:32 [kworker/1:1H-
+root        376  0.8  0.0      0     0 ?        S    04:45   2:22 [jbd2/sda1-8]
+root        377  0.0  0.0      0     0 ?        I<   04:45   0:00 [ext4-rsv-conv
+root        417  0.0  0.7 131412 15180 ?        S<s  04:45   0:01 /lib/systemd/s
+root        429  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop0]
+root        433  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop1]
+root        437  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop2]
+root        445  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop4]
+root        446  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop5]
+root        448  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop6]
+root        451  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop7]
+root        453  0.0  0.1  48828  2596 ?        Ss   04:45   0:01 /lib/systemd/s
+root        458  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop9]
+root        459  0.0  0.0      0     0 ?        S<   04:45   0:00 [loop10]
+root        464  0.0  0.0      0     0 ?        S    04:45   0:02 [irq/16-vmwgfx
+root        465  0.0  0.0      0     0 ?        I<   04:45   0:00 [ttm_swap]
+root        478  0.0  0.0 158784     0 ?        Ssl  04:45   0:00 vmware-vmblock
+root        579  0.0  0.0      0     0 ?        I<   04:45   0:00 [cryptd]
+systemd+    754  0.0  0.0  70764  1496 ?        Ss   04:45   0:00 /lib/systemd/s
+systemd+    756  0.0  0.0 146112   512 ?        Ssl  04:45   0:00 /lib/systemd/s
+root        757  0.0  0.0  98256  1680 ?        Ss   04:45   0:00 /usr/bin/VGAut
+root        759  0.1  0.1 235448  2424 ?        Ssl  04:45   0:18 /usr/bin/vmtoo
+root        762  0.0  0.0  36512  1192 ?        Ss   04:45   0:00 /usr/lib/bluet
+root        764  0.0  0.0  38424   876 ?        Ss   04:45   0:00 /usr/sbin/cron
+root        766  0.0  0.1 517752  3468 ?        Ssl  04:45   0:00 /usr/lib/udisk
+root        769  0.0  0.1  70704  2008 ?        Ss   04:45   0:00 /lib/systemd/s
+root        770  0.0  0.0 434324  1776 ?        Ssl  04:45   0:00 /usr/sbin/Mode
+syslog      771  0.0  0.0 269332   360 ?        Ssl  04:45   0:00 /usr/sbin/rsys
+avahi       777  0.0  0.0  47256   720 ?        Ss   04:45   0:00 avahi-daemon: 
+root        779  0.0  0.0 308572  1936 ?        Ssl  04:45   0:00 /usr/lib/accou
+root        780  0.0  0.0   4548     0 ?        Ss   04:45   0:00 /usr/sbin/acpi
+root        786  0.0  0.1 177636  3616 ?        Ssl  04:45   0:00 /usr/bin/pytho
+message+    787  0.0  0.1  51668  3156 ?        Ss   04:45   0:01 /usr/bin/dbus-
+avahi       810  0.0  0.0  47076    28 ?        S    04:45   0:00 avahi-daemon: 
+root        832  0.0  0.3 580336  6672 ?        Ssl  04:45   0:01 /usr/sbin/Netw
+root        833  0.0  0.0 110544     0 ?        Ssl  04:45   0:00 /usr/sbin/irqb
+root        836  0.0  0.0  45228   852 ?        Ss   04:45   0:00 /sbin/wpa_supp
+root        852  0.0  0.1 311228  2528 ?        Ssl  04:45   0:00 /usr/lib/polic
+root        876  0.0  0.1 194344  2300 ?        Ssl  04:45   0:00 /usr/bin/pytho
+root        893  0.0  0.0 308188  1836 ?        Ssl  04:45   0:00 /usr/sbin/gdm3
+root        897  0.0  0.0 261556  1736 ?        Sl   04:45   0:00 gdm-session-wo
+whoopsie    978  0.0  0.2 468852  5956 ?        Ssl  04:45   0:00 /usr/bin/whoop
+kernoops    982  0.0  0.0  56940    76 ?        Ss   04:45   0:00 /usr/sbin/kern
+kernoops    984  0.0  0.0  56940  1088 ?        Ss   04:45   0:00 /usr/sbin/kern
+gdm        1006  0.0  0.0  76916   644 ?        Ss   04:45   0:00 /lib/systemd/s
+gdm        1024  0.0  0.0 114236   300 ?        S    04:45   0:00 (sd-pam)
+gdm        1120  0.0  0.0 197796  1676 tty1     Ssl+ 04:45   0:00 /usr/lib/gdm3/
+gdm        1122  0.0  0.0  50268  1372 ?        Ss   04:45   0:00 /usr/bin/dbus-
+gdm        1133  0.0  0.1 567108  2812 tty1     Sl+  04:45   0:00 /usr/lib/gnome
+gdm        1516  0.0  2.0 3375068 41584 tty1    Sl+  04:45   0:09 /usr/bin/gnome
+root       1592  0.0  0.1 322440  3112 ?        Ssl  04:46   0:00 /usr/lib/upowe
+gdm        1620  0.0  0.1 408504  2020 tty1     Sl+  04:46   0:00 /usr/bin/Xwayl
+gdm        1626  0.0  0.0 365812  1976 ?        Ssl  04:46   0:00 /usr/lib/at-sp
+gdm        1631  0.0  0.0  49928   724 ?        S    04:46   0:00 /usr/bin/dbus-
+gdm        1633  0.0  0.0 220764   944 ?        Sl   04:46   0:00 /usr/lib/at-sp
+gdm        1637  0.0  0.0 1153312  268 ?        Ssl  04:46   0:00 /usr/bin/pulse
+rtkit      1638  0.0  0.0 183504   820 ?        SNsl 04:46   0:00 /usr/lib/rtkit
+gdm        1650  0.0  0.0 375228  1848 tty1     Sl   04:46   0:00 ibus-daemon --
+gdm        1653  0.0  0.0 294488  1408 tty1     Sl   04:46   0:00 /usr/lib/ibus/
+gdm        1656  0.0  0.2 507020  4296 tty1     Sl   04:46   0:00 /usr/lib/ibus/
+gdm        1658  0.0  0.0 292432  1544 ?        Sl   04:46   0:00 /usr/lib/ibus/
+gdm        1666  0.0  0.0 271560  1284 ?        Ssl  04:46   0:00 /usr/libexec/x
+root       1671  0.0  0.0 315256  1832 ?        Ssl  04:46   0:00 /usr/lib/x86_6
+gdm        1672  0.0  0.2 655512  4260 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+root       1678  0.0  0.4 530916  9992 ?        Ssl  04:46   0:08 /usr/lib/packa
+gdm        1682  0.0  0.0 294568  1712 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1684  0.0  0.2 506652  4272 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1686  0.0  0.2 819828  5540 tty1     Sl+  04:46   0:01 /usr/lib/gnome
+gdm        1687  0.0  0.1 393712  2184 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1688  0.0  0.0 283740  1428 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1689  0.0  0.2 667496  4344 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1690  0.0  0.2 1101256 4448 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1694  0.0  0.0 201996   876 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1696  0.0  0.2 751988  4892 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1698  0.0  0.0 267012  1408 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1699  0.0  0.0 202016   848 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1703  0.0  0.0 275732  1140 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1708  0.0  0.0 321524  1528 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1709  0.0  0.0 390644   696 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1710  0.0  0.0 341020  1748 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1714  0.0  0.2 591592  4360 tty1     Sl+  04:46   0:00 /usr/lib/gnome
+gdm        1731  0.0  0.0 218764  1384 tty1     Sl   04:46   0:00 /usr/lib/ibus/
+colord     1765  0.0  0.1 339572  3008 ?        Ssl  04:46   0:00 /usr/lib/color
+root       1870  0.0  0.0 267748  1788 ?        Sl   04:46   0:00 gdm-session-wo
+zhj        1917  0.0  0.1  77024  2660 ?        Ss   04:46   0:00 /lib/systemd/s
+zhj        1918  0.0  0.0 114236   300 ?        S    04:46   0:00 (sd-pam)
+zhj        1931  0.0  0.0 288376  1756 ?        Sl   04:46   0:00 /usr/bin/gnome
+zhj        1935  0.0  0.0 212132  1720 tty2     Ssl+ 04:46   0:00 /usr/lib/gdm3/
+zhj        1937  0.2  1.6 399308 33188 tty2     Sl+  04:46   0:40 /usr/lib/xorg/
+zhj        1969  0.0  0.1  52088  3864 ?        Ss   04:46   0:01 /usr/bin/dbus-
+zhj        1972  0.0  0.1 717124  3376 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2004  0.0  2.1 439304 43512 ?        Sl   04:46   0:02 /usr/bin/fcitx
+zhj        2068  0.0  0.0  50060  1608 ?        Ss   04:46   0:00 /usr/bin/dbus-
+zhj        2071  0.0  0.0  11300    40 ?        Ss   04:46   0:00 /usr/bin/ssh-a
+zhj        2073  0.0  0.0  27592    48 ?        SN   04:46   0:00 /usr/bin/fcitx
+zhj        2080  0.0  0.0 291956  1872 ?        Ssl  04:46   0:00 /usr/lib/gvfs/
+zhj        2085  0.0  0.0 432020  1672 ?        Sl   04:46   0:00 /usr/lib/gvfs/
+zhj        2094  0.0  0.1 368008  2228 ?        Ssl  04:46   0:00 /usr/lib/at-sp
+zhj        2099  0.0  0.0  50060  1164 ?        S    04:46   0:00 /usr/bin/dbus-
+zhj        2102  0.0  0.1 220708  2044 ?        Sl   04:46   0:00 /usr/lib/at-sp
+zhj        2125  0.4  6.0 3283780 120628 tty2   Sl+  04:46   1:10 /usr/bin/gnome
+zhj        2134  0.0  0.3 1172164 7732 ?        S<l  04:46   0:02 /usr/bin/pulse
+root       2145  0.0  0.0      0     0 ?        S<   04:46   0:00 [krfcommd]
+zhj        2147  0.0  0.1 377448  3404 tty2     Sl   04:46   0:00 ibus-daemon --
+zhj        2151  0.0  0.1 296792  2488 tty2     Sl   04:46   0:00 /usr/lib/ibus/
+zhj        2153  0.0  0.5 356312 10532 tty2     Sl   04:46   0:00 /usr/lib/ibus/
+zhj        2155  0.0  0.1 294728  2468 ?        Sl   04:46   0:00 /usr/lib/ibus/
+zhj        2160  0.0  0.0 271560  1840 ?        Ssl  04:46   0:00 /usr/libexec/x
+zhj        2171  0.0  0.2 696788  5248 ?        Sl   04:46   0:00 /usr/lib/gnome
+zhj        2181  0.0  0.3 1308956 6768 ?        Ssl  04:46   0:00 /usr/lib/evolu
+zhj        2182  0.0  0.1 320188  2360 ?        Ssl  04:46   0:00 /usr/lib/gvfs/
+zhj        2189  0.0  0.1 275868  2204 ?        Ssl  04:46   0:00 /usr/lib/gvfs/
+zhj        2193  0.0  0.1 288788  2308 ?        Ssl  04:46   0:00 /usr/lib/gvfs/
+zhj        2197  0.0  0.1 378820  2428 ?        Ssl  04:46   0:00 /usr/lib/gvfs/
+zhj        2203  0.0  0.1 274044  2280 ?        Ssl  04:46   0:00 /usr/lib/gvfs/
+zhj        2207  0.0  0.3 781800  7480 ?        Sl   04:46   0:00 /usr/lib/gnome
+zhj        2221  0.0  0.1 319580  2512 ?        Sl   04:46   0:00 /usr/lib/gnome
+zhj        2226  0.0  0.5 527500 11732 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2227  0.0  0.1 349328  3124 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2229  0.0  0.1 423344  2280 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2230  0.0  0.0 275732  1316 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2233  0.0  0.1 471420  3900 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2240  0.0  0.1 343188  3060 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2242  0.0  0.5 504788 11388 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2246  0.0  0.5 440768 10808 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2252  0.0  0.0 392812  1700 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2260  0.0  0.1 296732  2580 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2261  0.0  0.5 356020 10540 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2264  0.0  0.6 742792 12768 tty2     Sl+  04:46   0:01 /usr/lib/gnome
+zhj        2265  0.0  0.4 481752  9564 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2266  0.0  0.1 374900  2668 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2270  0.0  0.5 516752 11476 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2273  0.0  0.6 1024380 13088 tty2    Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2277  0.0  0.1 296740  2472 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2296  0.0  0.1 508768  3536 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2328  0.0  1.5 817136 31156 tty2     Sl+  04:46   0:02 nautilus-deskt
+zhj        2337  0.0  0.1 391648  2920 tty2     Sl+  04:46   0:00 /usr/lib/x86_6
+zhj        2339  0.0  0.0 271932  1916 tty2     Sl+  04:46   0:00 /usr/lib/gnome
+zhj        2346  0.1  0.6 491704 13328 tty2     Sl+  04:46   0:18 /usr/bin/vmtoo
+zhj        2365  0.0  0.1 384132  2800 ?        Sl   04:46   0:00 /usr/lib/gvfs/
+zhj        2386  0.0  2.1 902624 42268 ?        Ssl  04:46   0:00 /usr/lib/evolu
+zhj        2406  0.0  0.1 220928  2592 tty2     Sl   04:46   0:00 /usr/lib/ibus/
+zhj        2423  0.0  3.3 3657600 67324 ?       Sl   04:46   0:05 sogou-qimpanel
+zhj        2426  0.0  0.1 188032  2384 ?        Sl   04:46   0:00 /usr/lib/dconf
+zhj        2460  0.0  2.0 1142692 40648 ?       Sl   04:46   0:00 /usr/lib/evolu
+zhj        2476  0.0  0.2 735076  5308 ?        Ssl  04:46   0:00 /usr/lib/evolu
+zhj        2485  0.0  0.2 1024076 4580 ?        Sl   04:46   0:00 /usr/lib/evolu
+zhj        2600  0.0  0.2 158740  4384 ?        S    04:46   0:00 sogou-qimpanel
+zhj        2649  0.0  0.2 633660  4028 tty2     Sl+  04:47   0:00 zeitgeist-data
+zhj        2658  0.0  0.3 445864  7884 ?        Ssl  04:47   0:00 /usr/bin/zeitg
+zhj        2672  0.0  0.4 330936  8500 ?        Ssl  04:47   0:00 /usr/lib/zeitg
+root       3262  0.0  0.0      0     0 ?        I<   04:47   0:00 [xfsalloc]
+root       3264  0.0  0.0      0     0 ?        I<   04:47   0:00 [xfs_mru_cache
+root       3268  0.0  0.0      0     0 ?        S    04:47   0:00 [jfsIO]
+root       3271  0.0  0.0      0     0 ?        S    04:47   0:00 [jfsCommit]
+root       3272  0.0  0.0      0     0 ?        S    04:47   0:00 [jfsCommit]
+root       3273  0.0  0.0      0     0 ?        S    04:47   0:00 [jfsSync]
+zhj        3476  0.0  0.6 607648 13708 tty2     Sl+  04:47   0:00 update-notifie
+zhj        3480  0.0  5.6 1413956 113300 tty2   SLl+ 04:47   0:06 /usr/bin/gnome
+root       3547  0.0  0.7 567268 15360 ?        Ssl  04:47   0:01 /usr/lib/fwupd
+root       3691  0.0  0.0      0     0 ?        S<   04:48   0:00 [loop12]
+zhj        3725  0.0  0.1 359636  2688 ?        Sl   04:48   0:00 /usr/lib/gvfs/
+root       4328  0.0  0.0      0     0 ?        I<   04:50   0:00 [kworker/u257:
+systemd+   4334  0.0  0.0  71848  1648 ?        Ss   04:51   0:00 /lib/systemd/s
+root       4411  0.0  0.0  45840   760 ?        S    04:52   0:00 dbus-launch --
+root       4412  0.0  0.0  49900  1424 ?        Ss   04:52   0:00 /usr/bin/dbus-
+root       4521  0.0  0.0      0     0 ?        S<   05:01   0:00 [loop8]
+root       4542 16.8  1.2 1013156 25660 ?       Ssl  05:01  41:53 /usr/lib/snapd
+root       4703  0.0  0.0      0     0 ?        S<   05:01   0:00 [loop11]
+root       4779  0.0  0.0      0     0 ?        S<   05:01   0:00 [loop13]
+root       5262  0.0  0.0      0     0 ?        I<   08:27   0:00 [kworker/u257:
+root       5268  0.0  0.2  25988  5628 ?        S    08:27   0:00 /sbin/dhclient
+zhj        6673  0.0  0.0   4624   920 ?        Ss   08:29   0:00 sh -c /usr/bin
+zhj        6674  0.0  2.1 596032 43356 ?        Sl   08:29   0:02 /usr/bin/pytho
+root       7340  0.0  0.3 107692  6980 ?        Ss   08:32   0:00 /usr/sbin/cups
+root       7342  0.0  0.4 303528  9232 ?        Ssl  08:32   0:00 /usr/sbin/cups
+root       7451  0.0  0.0      0     0 ?        I    08:39   0:00 [kworker/0:0-c
+root       7565  0.0  0.0      0     0 ?        I    08:55   0:00 [kworker/u256:
+zhj        7640  0.5  1.7 656856 35216 ?        Ssl  09:00   0:02 /usr/lib/gnome
+zhj        7655  0.0  0.3  30604  6048 pts/0    Ss   09:00   0:00 bash
+root       7864  0.0  0.0      0     0 ?        I    09:01   0:00 [kworker/u256:
+root       7923  0.0  0.0      0     0 ?        I    09:02   0:00 [kworker/1:0-c
+root       7924  0.1  0.0      0     0 ?        I    09:02   0:00 [kworker/1:3-e
+root       7929  0.0  0.0      0     0 ?        I    09:02   0:00 [kworker/0:3-e
+zhj        8484  0.0  0.1  46772  3508 pts/0    R+   09:09   0:00 ps -aux
+zhj@thinkpad-vmware:~$ top
+
+top - 09:09:50 up  4:24,  1 user,  load average: 0.18, 0.63, 0.67
+Tasks: 328 total,   1 running, 256 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  6.3 us,  2.3 sy,  0.0 ni, 90.5 id,  0.3 wa,  0.0 hi,  0.5 si,  0.0 st
+KiB Mem :  2006004 total,   223644 free,  1146720 used,   635640 buff/cache
+KiB Swap:  1942896 total,  1678640 free,   264256 used.   696576 avail Mem 
+
+   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND    
+  4542 root      20   0 1013156  25660   1828 S  16.6  1.3  42:02.22 snapd      
+   376 root      20   0       0      0      0 S   0.7  0.0   2:22.58 jbd2/sda1+ 
+  6674 zhj       20   0  596032  43356  27312 S   0.3  2.2   0:02.25 python3    
+  8485 zhj       20   0   51320   4140   3328 R   0.3  0.2   0:00.05 top        
+     1 root      20   0  225696   5564   3188 S   0.0  0.3   0:05.26 systemd    
+     2 root      20   0       0      0      0 S   0.0  0.0   0:00.06 kthreadd   
+     3 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_gp     
+     4 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_par_gp 
+     6 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kworker/0+ 
+     9 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 mm_percpu+ 
+    10 root      20   0       0      0      0 S   0.0  0.0   0:01.71 ksoftirqd+ 
+    11 root      20   0       0      0      0 I   0.0  0.0   0:26.63 rcu_sched  
+    12 root      rt   0       0      0      0 S   0.0  0.0   0:00.10 migration+ 
+    13 root     -51   0       0      0      0 S   0.0  0.0   0:00.00 idle_inje+ 
+    14 root      20   0       0      0      0 S   0.0  0.0   0:00.00 cpuhp/0    
+    15 root      20   0       0      0      0 S   0.0  0.0   0:00.00 cpuhp/1    
+    16 root     -51   0       0      0      0 S   0.0  0.0   0:00.00 idle_inje+ 
+zhj@thinkpad-vmware:~$ date
+Tue Feb 11 09:09:59 CST 2020
+zhj@thinkpad-vmware:~$ grep -n hello .
+grep: .: Is a directory
+zhj@thinkpad-vmware:~$ grep -n hello ./helloworld.c 
+zhj@thinkpad-vmware:~$ grep -n Hello ./helloworld.c 
+4:	//printf("HelloWorld\n");
+zhj@thinkpad-vmware:~$ find -name helloworld
+find: ‘./.dbus’: Permission denied
+^C
+zhj@thinkpad-vmware:~$ find . -name helloworld
+find: ‘./.dbus’: Permission denied
+./helloworld
+zhj@thinkpad-vmware:~$ sduo find . -name helloworld
+
+Command 'sduo' not found, did you mean:
+
+  command 'sudo' from deb sudo
+  command 'sudo' from deb sudo-ldap
+
+Try: sudo apt install <deb name>
+
+zhj@thinkpad-vmware:~$ sudo find . -name helloworld
+./helloworld
+zhj@thinkpad-vmware:~$ wc helloworld
+  15   74 8312 helloworld
+zhj@thinkpad-vmware:~$ bc
+bc 1.07.1
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'. 
+1+1
+2
+sqrt(4)
+2
+exit
+0
+quit
+zhj@thinkpad-vmware:~$ head -2 helloworld
+ HH/lib64/ld-linux-x86-64.so.2GNUGNUа�j.)�+8��oxx�� �<@ "
+                                                                         \ k "libc.so.6getchar__cxa_finalize__libc_start_mainGLIBC_2.2.5_ITM_deregisterTMClone � � � � � � H�H��terTMCloneTableui	4�
+ H��t��H���5�
+zhj@thinkpad-vmware:~$ head -2 helloworld.c 
+#include <stdio.h>
+int main()
+zhj@thinkpad-vmware:~$ tail -2 helloworld.c 
+	return 0;
+}
+zhj@thinkpad-vmware:~$ ls
+ccc        face_recognition  ls_list    opencv_contrib      Public
+Desktop    helloworld        Music      opencv_contrib.zip  Templates
+Documents  helloworld.c      my_pstree  opencv.zip          Videos
+Downloads  Linux_Class       opencv     Pictures
+zhj@thinkpad-vmware:~$ mkdir mooc
+zhj@thinkpad-vmware:~$ mv ccc ls_list my_pstree helloworld* mooc/
+zhj@thinkpad-vmware:~$ cd mooc/
+zhj@thinkpad-vmware:~/mooc$ ls
+ccc  helloworld  helloworld.c  ls_list  my_pstree
+zhj@thinkpad-vmware:~/mooc$ tar -czvf mooc.tar.gz *
+ccc
+helloworld
+helloworld.c
+ls_list
+my_pstree
+zhj@thinkpad-vmware:~/mooc$ ls
+ccc  helloworld  helloworld.c  ls_list  mooc.tar.gz  my_pstree
+zhj@thinkpad-vmware:~/mooc$ rm ccc helloworld* ls_list my_pstree 
+zhj@thinkpad-vmware:~/mooc$ ls
+mooc.tar.gz
+zhj@thinkpad-vmware:~/mooc$ tar -xzvf mooc.tar.gz 
+ccc
+helloworld
+helloworld.c
+ls_list
+my_pstree
+zhj@thinkpad-vmware:~/mooc$ ls
+ccc  helloworld  helloworld.c  ls_list  mooc.tar.gz  my_pstree
+zhj@thinkpad-vmware:~/mooc$ 

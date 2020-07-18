@@ -1,0 +1,383 @@
+zhj@thinkpad-vmware:~$ ls
+Desktop  Documents  Downloads  face_recognition  hello  hello.c  Linux  Linux_Class  Music  opencv  opencv_contrib  opencv_contrib.zip  opencv.zip  Pictures  Public  Templates  Videos
+zhj@thinkpad-vmware:~$ cd Linux
+zhj@thinkpad-vmware:~/Linux$ ls
+homework  mooc
+zhj@thinkpad-vmware:~/Linux$ vi ex3-1.c
+zhj@thinkpad-vmware:~/Linux$ cat ex3-1.c 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.f>
+#define PERMS 0666
+#define DUMMY 0
+#define BUFSIZE 1024
+
+int main(int argc, char* argv[])
+{
+	int source_fd,target_fd,num;
+	char iobuffer[BUFSIZE];
+	// Validate input parameters
+	if(argc != 3)
+	{
+		printf("Usage:copy Sourcefile Targetfile\n");
+		return 1;
+	}
+	// Open Source file
+	if((source_fd = open(*(argv+1),O_RDONLY,DUMMY)) == -1)
+	{
+		printf("Source file open error!\n");
+		return 2;
+	}
+	// Open target file
+	if((target_fd = open(*(argv+2),O_WRONLY|O_CREAT,PERMS)) == -1)
+	{
+		printf("Target file open error!\n");
+		return 3;
+	}
+	// Implement the "copy" function
+	while((num = read(source_fd,iobuffer,BUFSIZE)) > 0)
+	{
+		if(write(target_fd,iobuffer,num) != num)
+		{
+			printf("Target file write error!\n");
+			return 4;
+		}
+	}
+	// Close file
+	close(source_fd);
+	close(target_fd);
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux$ gcc ex3-1.c -o ex3-1
+ex3-1.c:4:10: fatal error: unistd.f: No such file or directory
+ #include <unistd.f>
+          ^~~~~~~~~~
+compilation terminated.
+zhj@thinkpad-vmware:~/Linux$ vi ex3-1.c
+zhj@thinkpad-vmware:~/Linux$ head -n 7 ex3-1.c 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#define PERMS 0666
+#define DUMMY 0
+#define BUFSIZE 1024
+zhj@thinkpad-vmware:~/Linux$ gcc ex3-1.c -o ex3-1
+ex3-1.c: In function ‘main’:
+ex3-1.c:16:3: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+   printf("Usage:copy Sourcefile Targetfile\n");
+   ^~~~~~
+ex3-1.c:16:3: warning: incompatible implicit declaration of built-in function ‘printf’
+ex3-1.c:16:3: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+ex3-1.c:22:3: warning: incompatible implicit declaration of built-in function ‘printf’
+   printf("Source file open error!\n");
+   ^~~~~~
+ex3-1.c:22:3: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+ex3-1.c:28:3: warning: incompatible implicit declaration of built-in function ‘printf’
+   printf("Target file open error!\n");
+   ^~~~~~
+ex3-1.c:28:3: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+ex3-1.c:36:4: warning: incompatible implicit declaration of built-in function ‘printf’
+    printf("Target file write error!\n");
+    ^~~~~~
+ex3-1.c:36:4: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+zhj@thinkpad-vmware:~/Linux$ vi ex3-1.c
+zhj@thinkpad-vmware:~/Linux$ head -n 8 ex3-1.c 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#define PERMS 0666
+#define DUMMY 0
+#define BUFSIZE 1024
+zhj@thinkpad-vmware:~/Linux$ gcc ex3-1.c -o ex3-1
+zhj@thinkpad-vmware:~/Linux$ ls
+ex3-1  ex3-1.c  homework  mooc
+zhj@thinkpad-vmware:~/Linux$ echo "This is a text file" > sourcefile
+zhj@thinkpad-vmware:~/Linux$ ls
+ex3-1  ex3-1.c  homework  mooc  sourcefile
+zhj@thinkpad-vmware:~/Linux$ cat sourcefile 
+This is a text file
+zhj@thinkpad-vmware:~/Linux$ touch targetfile
+zhj@thinkpad-vmware:~/Linux$ ./ex3-1 sourcefile targetfile 
+zhj@thinkpad-vmware:~/Linux$ cat targetfile 
+This is a text file
+zhj@thinkpad-vmware:~/Linux$ cat sourcefile 
+This is a text file
+zhj@thinkpad-vmware:~/Linux$ ls
+ex3-1  ex3-1.c  homework  mooc  sourcefile  targetfile
+zhj@thinkpad-vmware:~/Linux$ mkdir ex3_1
+zhj@thinkpad-vmware:~/Linux$ ls
+ex3_1  ex3-1  ex3-1.c  homework  mooc  sourcefile  targetfile
+zhj@thinkpad-vmware:~/Linux$ mv ex3* *file ex3_1/
+mv: cannot move 'ex3_1' to a subdirectory of itself, 'ex3_1/ex3_1'
+zhj@thinkpad-vmware:~/Linux$ ls
+ex3_1  homework  mooc
+zhj@thinkpad-vmware:~/Linux$ ls ex3_1/
+ex3-1  ex3-1.c  sourcefile  targetfile
+zhj@thinkpad-vmware:~/Linux$ mkdir ex3_3
+zhj@thinkpad-vmware:~/Linux$ cd ex3_3/
+zhj@thinkpad-vmware:~/Linux/ex3_3$ umask
+0022
+zhj@thinkpad-vmware:~/Linux/ex3_3$ vi /etc/passwd
+zhj@thinkpad-vmware:~/Linux/ex3_3$ vi /etc/passwd
+zhj@thinkpad-vmware:~/Linux/ex3_3$ vi ex3-3.c
+zhj@thinkpad-vmware:~/Linux/ex3_3$ cat ex3-3.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <utime.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(int argc, char* argv[]){
+	int i,fd;
+	struct stat statbuf;
+	struct utimbuf times;
+	// Verify input parameters
+	if(argc != 2){
+		printf("Usage:ex3-3 filename\n");
+		return 1;
+	}
+	// Open file
+	if((fd = open(argv[1], O_RDWR)) == -1){
+		printf("%s open failed\n", argv[1]);
+		return 2;
+	}
+	// Get file information, stored in the structure "statbuf"
+	if(stat(argv[1], &statbuf) == -1){
+		return 3;
+	}
+	// Truncate the file
+	if(ftruncate(fd, 0) == -1){
+		printf("%s truncate failed\n", argv[1]);
+		return 4;
+	}
+	printf("%s is truncated now\n", argv[1]);
+	// Get file information from statbuf into times
+	times.actime = statbuf.st_atime;
+	times.modtime = statbuf.st_mtime;
+	// Modify file information
+	if(utime(argv[1], &times) == 0){
+		printf("utime() call successful\n");
+	}
+	else{
+		printf("Error: utime() call failed\n");
+	}
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/ex3_3$ gcc ex3-3.c -o ex3-3
+ex3-3.c: In function ‘main’:
+ex3-3.c:26:5: warning: implicit declaration of function ‘ftruncate’ [-Wimplicit-function-declaration]
+  if(ftruncate(fd, 0) == -1){
+     ^~~~~~~~~
+zhj@thinkpad-vmware:~/Linux/ex3_3$ vi ex3-3.c
+zhj@thinkpad-vmware:~/Linux/ex3_3$ head -n 6 ex3-3.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <utime.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+zhj@thinkpad-vmware:~/Linux/ex3_3$ gcc ex3-3.c -o ex3-3
+zhj@thinkpad-vmware:~/Linux/ex3_3$ ls
+ex3-3  ex3-3.c
+zhj@thinkpad-vmware:~/Linux/ex3_3$ echo "This is a test file" > file
+zhj@thinkpad-vmware:~/Linux/ex3_3$ ls -l
+total 20
+-rwxr-xr-x 1 zhj zhj 8632 Feb 20 19:40 ex3-3
+-rw-r--r-- 1 zhj zhj  967 Feb 20 19:40 ex3-3.c
+-rw-r--r-- 1 zhj zhj   20 Feb 20 19:41 file
+zhj@thinkpad-vmware:~/Linux/ex3_3$ ./ex3-3 file 
+file is truncated now
+utime() call successful
+zhj@thinkpad-vmware:~/Linux/ex3_3$ ls -l
+total 16
+-rwxr-xr-x 1 zhj zhj 8632 Feb 20 19:40 ex3-3
+-rw-r--r-- 1 zhj zhj  967 Feb 20 19:40 ex3-3.c
+-rw-r--r-- 1 zhj zhj    0 Feb 20 19:41 file
+zhj@thinkpad-vmware:~/Linux/ex3_3$ cat file 
+zhj@thinkpad-vmware:~/Linux/ex3_3$ ls
+ex3-3  ex3-3.c  file
+zhj@thinkpad-vmware:~/Linux/ex3_3$ cd ..
+zhj@thinkpad-vmware:~/Linux$ ls
+ex3_1  ex3_3  homework  mooc
+zhj@thinkpad-vmware:~/Linux$ mkdir ex3_4
+zhj@thinkpad-vmware:~/Linux$ cd ex3_4/
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi /etc/vim/vimrc
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo vi /etc/vim/vimrc
+[sudo] password for zhj: 
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo source /etc/vim/vimrc
+sudo: source: command not found
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo vi /etc/vim/vimrc
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo vi /etc/vim/vimrc
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ cat ex3-4.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(int argc, char* argv[]){
+	int i;
+	struct stat buf;
+	char* ptr;
+	// Check all files
+	for(i=1; i<argc; i++){
+		printf("%s: ", argv[i]);
+		// Get file information and stored into buf
+		if(lstat(argv[1], &buf) == -1){
+			printf("Error::lstat() call failed\n");
+			continue;
+		}
+		// Determine the file type
+		switch(S_IFMT & buf.st_mode){
+			case S_IFREG: ptr = "regular"; break;
+			case S_IFDIR: ptr = "directory"; break;
+			case S_IFCHR: ptr = "character special"; break;
+			case S_IFBLK: ptr = "block special"; break;
+			case S_IFFIFO: ptr = "fifo"; break;
+			case S_IFSLNK: ptr = "symbolic link"; break;
+			case S_IFSOCK: ptr = "socket"; break;
+			default: ptr = "unknown mode";
+		}
+		printf("%s\n", ptr);
+	}
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/ex3_4$ gcc ex3-4.c -o ex3-4
+ex3-4.c: In function ‘main’:
+ex3-4.c:24:9: error: ‘S_IFFIFO’ undeclared (first use in this function); did you mean ‘S_ISFIFO’?
+    case S_IFFIFO: ptr = "fifo"; break;
+         ^~~~~~~~
+         S_ISFIFO
+ex3-4.c:24:9: note: each undeclared identifier is reported only once for each function it appears in
+ex3-4.c:25:9: error: ‘S_IFSLNK’ undeclared (first use in this function); did you mean ‘S_IFLNK’?
+    case S_IFSLNK: ptr = "symbolic link"; break;
+         ^~~~~~~~
+         S_IFLNK
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ gcc ex3-4.c -o ex3-4
+ex3-4.c: In function ‘main’:
+ex3-4.c:24:9: error: ‘S_IFFIFO’ undeclared (first use in this function); did you mean ‘S_ISFIFO’?
+    case S_IFFIFO: ptr = "fifo"; break;
+         ^~~~~~~~
+         S_ISFIFO
+ex3-4.c:24:9: note: each undeclared identifier is reported only once for each function it appears in
+ex3-4.c:25:9: error: ‘S_IFSLNK’ undeclared (first use in this function); did you mean ‘S_IFLNK’?
+    case S_IFSLNK: ptr = "symbolic link"; break;
+         ^~~~~~~~
+         S_IFLNK
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ gcc ex3-4.c -o ex3-4
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sed -n '20,26p' ex3-4.c 
+			case S_IFREG: ptr = "regular"; break;
+			case S_IFDIR: ptr = "directory"; break;
+			case S_IFCHR: ptr = "character special"; break;
+			case S_IFBLK: ptr = "block special"; break;
+			case S_IFIFO: ptr = "fifo"; break;
+			case S_IFLNK: ptr = "symbolic link"; break;
+			case S_IFSOCK: ptr = "socket"; break;
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ls
+ex3-4  ex3-4.c
+zhj@thinkpad-vmware:~/Linux/ex3_4$ echo "Next I will create some files for testing..."
+Next I will create some files for testing...
+zhj@thinkpad-vmware:~/Linux/ex3_4$ touch regular_file
+zhj@thinkpad-vmware:~/Linux/ex3_4$ mkdir directory_file
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ln -s ./regular_file symbolic_file
+zhj@thinkpad-vmware:~/Linux/ex3_4$ mknod fifo_file p
+zhj@thinkpad-vmware:~/Linux/ex3_4$ mknod character_file c 1 1
+mknod: character_file: Operation not permitted
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo mknod character_file c 1 1
+[sudo] password for zhj: 
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo mknod block_file b 1 2
+zhj@thinkpad-vmware:~/Linux/ex3_4$ mksock sock_file
+mksock: command not found
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sudo nc -UI ./sock_file
+nc: TCP receive window invalid: ./sock_file
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ls -l
+total 20
+brw-r--r-- 1 root root 1, 2 Feb 20 20:35 block_file
+crw-r--r-- 1 root root 1, 1 Feb 20 20:35 character_file
+drwxr-xr-x 2 zhj  zhj  4096 Feb 20 20:33 directory_file
+-rwxr-xr-x 1 zhj  zhj  8496 Feb 20 20:30 ex3-4
+-rw-r--r-- 1 zhj  zhj   813 Feb 20 20:30 ex3-4.c
+prw-r--r-- 1 zhj  zhj     0 Feb 20 20:34 fifo_file
+-rw-r--r-- 1 zhj  zhj     0 Feb 20 20:33 regular_file
+lrwxrwxrwx 1 zhj  zhj    14 Feb 20 20:34 symbolic_file -> ./regular_file
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ./ex3-4 *file
+block_file: block special
+character_file: block special
+directory_file: block special
+fifo_file: block special
+regular_file: block special
+symbolic_file: block special
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c 
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ./ex3-4 character_file 
+character_file: character special
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ./ex3-4 block_file character_file 
+block_file: block special
+character_file: block special
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c 
+zhj@thinkpad-vmware:~/Linux/ex3_4$ vi ex3-4.c 
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sed -n 5p ex3-4.c 
+
+zhj@thinkpad-vmware:~/Linux/ex3_4$ sed -n 14p ex3-4.c 
+		if(lstat(argv[i], &buf) == -1){
+zhj@thinkpad-vmware:~/Linux/ex3_4$ gcc ex3-4.c -o ex3-4
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ls -l
+total 20
+brw-r--r-- 1 root root 1, 2 Feb 20 20:35 block_file
+crw-r--r-- 1 root root 1, 1 Feb 20 20:35 character_file
+drwxr-xr-x 2 zhj  zhj  4096 Feb 20 20:33 directory_file
+-rwxr-xr-x 1 zhj  zhj  8496 Feb 20 20:42 ex3-4
+-rw-r--r-- 1 zhj  zhj   813 Feb 20 20:42 ex3-4.c
+prw-r--r-- 1 zhj  zhj     0 Feb 20 20:34 fifo_file
+-rw-r--r-- 1 zhj  zhj     0 Feb 20 20:33 regular_file
+lrwxrwxrwx 1 zhj  zhj    14 Feb 20 20:34 symbolic_file -> ./regular_file
+zhj@thinkpad-vmware:~/Linux/ex3_4$ ./ex3-4 *file
+block_file: block special
+character_file: character special
+directory_file: directory
+fifo_file: fifo
+regular_file: regular
+symbolic_file: symbolic link
+zhj@thinkpad-vmware:~/Linux/ex3_4$ cat ex3-4.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(int argc, char* argv[]){
+	int i;
+	struct stat buf;
+	char* ptr;
+	// Check all files
+	for(i=1; i<argc; i++){
+		printf("%s: ", argv[i]);
+		// Get file information and stored into buf
+		if(lstat(argv[i], &buf) == -1){
+			printf("Error::lstat() call failed\n");
+			continue;
+		}
+		// Determine the file type
+		switch(S_IFMT & buf.st_mode){
+			case S_IFREG: ptr = "regular"; break;
+			case S_IFDIR: ptr = "directory"; break;
+			case S_IFCHR: ptr = "character special"; break;
+			case S_IFBLK: ptr = "block special"; break;
+			case S_IFIFO: ptr = "fifo"; break;
+			case S_IFLNK: ptr = "symbolic link"; break;
+			case S_IFSOCK: ptr = "socket"; break;
+			default: ptr = "unknown mode";
+		}
+		printf("%s\n", ptr);
+	}
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/ex3_4$ echo "ex3-4 test complete at" $(date)
+ex3-4 test complete at Thu Feb 20 20:49:48 CST 2020

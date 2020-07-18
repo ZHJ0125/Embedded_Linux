@@ -1,0 +1,107 @@
+zhj@thinkpad-vmware:~$ ping 47.95.13.239
+PING 47.95.13.239 (47.95.13.239) 56(84) bytes of data.
+64 bytes from 47.95.13.239: icmp_seq=1 ttl=128 time=39.7 ms
+64 bytes from 47.95.13.239: icmp_seq=2 ttl=128 time=35.8 ms
+64 bytes from 47.95.13.239: icmp_seq=3 ttl=128 time=36.8 ms
+64 bytes from 47.95.13.239: icmp_seq=4 ttl=128 time=35.3 ms
+64 bytes from 47.95.13.239: icmp_seq=5 ttl=128 time=36.1 ms
+64 bytes from 47.95.13.239: icmp_seq=6 ttl=128 time=35.7 ms
+^C
+--- 47.95.13.239 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5010ms
+rtt min/avg/max/mdev = 35.376/36.628/39.735/1.479 ms
+zhj@thinkpad-vmware:~$ ping -c 3 47.95.13.239
+PING 47.95.13.239 (47.95.13.239) 56(84) bytes of data.
+64 bytes from 47.95.13.239: icmp_seq=1 ttl=128 time=36.1 ms
+64 bytes from 47.95.13.239: icmp_seq=2 ttl=128 time=35.9 ms
+64 bytes from 47.95.13.239: icmp_seq=3 ttl=128 time=35.8 ms
+
+--- 47.95.13.239 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 35.822/35.983/36.178/0.263 ms
+zhj@thinkpad-vmware:~$ ifconfig
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.86.129  netmask 255.255.255.0  broadcast 192.168.86.255
+        inet6 fe80::aa28:4480:c71:526e  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:b7:a0:09  txqueuelen 1000  (Ethernet)
+        RX packets 404216  bytes 587249185 (587.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98791  bytes 6384323 (6.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 870  bytes 85274 (85.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 870  bytes 85274 (85.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+zhj@thinkpad-vmware:~$ ifconfig lo
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 870  bytes 85274 (85.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 870  bytes 85274 (85.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+zhj@thinkpad-vmware:~$ ifconfig lo down
+SIOCSIFFLAGS: Operation not permitted
+zhj@thinkpad-vmware:~$ sudo ifconfig lo down
+[sudo] password for zhj: 
+zhj@thinkpad-vmware:~$ ifconfig 
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.86.129  netmask 255.255.255.0  broadcast 192.168.86.255
+        inet6 fe80::aa28:4480:c71:526e  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:b7:a0:09  txqueuelen 1000  (Ethernet)
+        RX packets 404232  bytes 587250576 (587.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98802  bytes 6385181 (6.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+zhj@thinkpad-vmware:~$ ifconfig lo up
+SIOCSIFFLAGS: Operation not permitted
+zhj@thinkpad-vmware:~$ sudo ifconfig lo up
+zhj@thinkpad-vmware:~$ ifconfig
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.86.129  netmask 255.255.255.0  broadcast 192.168.86.255
+        inet6 fe80::aa28:4480:c71:526e  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:b7:a0:09  txqueuelen 1000  (Ethernet)
+        RX packets 404241  bytes 587251316 (587.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98812  bytes 6385943 (6.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 898  bytes 88270 (88.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 898  bytes 88270 (88.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+zhj@thinkpad-vmware:~$ sftp root@47.95.13.239
+The authenticity of host '47.95.13.239 (47.95.13.239)' can't be established.
+ECDSA key fingerprint is SHA256:7iWO5cr9sbPpmnr1AVo5ZgJBdO3FqPNzJUj25Kl6Q7Y.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '47.95.13.239' (ECDSA) to the list of known hosts.
+root@47.95.13.239's password: 
+Connected to 47.95.13.239.
+sftp> ls
+TempData        jekyll_backup   kiftd           
+sftp> cd /var/www/html/
+sftp> ls
+Study       data        index.html  phpmyadmin  play        typecho     wordpress   
+sftp> ls ~
+Can't ls: "/var/www/html/~" not found
+sftp> cd
+You must specify a path after a cd command.
+sftp> cd /root
+sftp> ls
+TempData        jekyll_backup   kiftd           
+sftp> exit
+zhj@thinkpad-vmware:~$ 

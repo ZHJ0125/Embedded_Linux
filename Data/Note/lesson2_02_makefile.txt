@@ -1,0 +1,492 @@
+zhj@thinkpad-vmware:~$ cd mooc/
+zhj@thinkpad-vmware:~/mooc$ ls
+lesson1  lesson2
+zhj@thinkpad-vmware:~/mooc$ cd lesson2/
+zhj@thinkpad-vmware:~/mooc/lesson2$ ls
+a.out  bad.c  gdbtest.c  have_optimization  hello  hello.c  m.out  mul1.c  mul2.c  my.h  not_optimization  optimeze.c
+zhj@thinkpad-vmware:~/mooc/lesson2$ mkdir makefile
+zhj@thinkpad-vmware:~/mooc/lesson2$ cd makefile/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cp ../hello.c .
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cat hello.c 
+#include <stdio.h>
+int main()
+{
+	printf("HelloWorld!\n");
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ vi makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cat makefile 
+hello:hello.c
+	gcc hello.c -o hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ make
+gcc hello.c -o hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ ls
+hello  hello.c  makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ ./hello 
+HelloWorld!
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir hello
+mkdir: cannot create directory ‘hello’: File exists
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ rm hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mv hello.c makefile hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir multi
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cd multi/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ vi h1.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ vi h2.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cat h1.c 
+#include <stdio.h>
+extern void foo();
+int main()
+{
+	printf("Hello!\n");
+	foo();
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cat h2.c 
+#include <stdio.h>
+void foo()
+{
+	printf("You are in 'foo' function");
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ vi makefile 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cat makefile 
+hello: h1.o h2.o
+	gcc -o hello h1.0 h2.0
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ make
+cc    -c -o h1.o h1.c
+cc    -c -o h2.o h2.c
+gcc -o hello h1.0 h2.0
+gcc: error: h1.0: No such file or directory
+gcc: error: h2.0: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+makefile:2: recipe for target 'hello' failed
+make: *** [hello] Error 1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ vi makefile 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cat makefile 
+hello: h1.o h2.o
+	gcc -o hello h1.o h2.0
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ls
+h1.c  h1.o  h2.c  h2.o  makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ make
+gcc -o hello h1.o h2.0
+gcc: error: h2.0: No such file or directory
+makefile:2: recipe for target 'hello' failed
+make: *** [hello] Error 1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ls
+h1.c  h1.o  h2.c  h2.o  makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ rm *.o
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ make
+cc    -c -o h1.o h1.c
+cc    -c -o h2.o h2.c
+gcc -o hello h1.o h2.0
+gcc: error: h2.0: No such file or directory
+makefile:2: recipe for target 'hello' failed
+make: *** [hello] Error 1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ vi makefile 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cat makefile 
+hello: h1.o h2.o
+	gcc -o hello h1.o h2.o
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ make
+gcc -o hello h1.o h2.o
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ls
+h1.c  h1.o  h2.c  h2.o  hello  makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ./hello 
+Hello!
+You are in 'foo' functionzhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ rm *.o hello 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ make
+cc    -c -o h1.o h1.c
+cc    -c -o h2.o h2.c
+gcc -o hello h1.o h2.o
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ls
+h1.c  h1.o  h2.c  h2.o  hello  makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ./hello 
+Hello!
+You are in 'foo' functionzhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ ls -l
+total 32
+-rw-r--r-- 1 zhj zhj   93 Feb 12 16:52 h1.c
+-rw-r--r-- 1 zhj zhj 1600 Feb 12 16:58 h1.o
+-rw-r--r-- 1 zhj zhj   72 Feb 12 16:53 h2.c
+-rw-r--r-- 1 zhj zhj 1552 Feb 12 16:58 h2.o
+-rwxr-xr-x 1 zhj zhj 8400 Feb 12 16:58 hello
+-rw-r--r-- 1 zhj zhj   41 Feb 12 16:56 makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cd .
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/multi$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ ls
+hello  multi
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir prog
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cd prog/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ vi p1.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cp p1.c p2.c p3.c
+cp: target 'p3.c' is not a directory
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+p1.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cp p1.c p2.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cp p1.c p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ vi p2.c 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ vi p3.c 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ vi makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat makefile 
+.PHONY: all
+all: p1 p2 p3
+p1: p1.c
+	gcc p1.c -o p1
+p2: p2.c
+	gcc p2.c -o p2
+p3: p3.c
+	gcc p3.c -o p3
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat p1.c 
+#include <stdio.h>
+int main()
+{
+	printf("This is p1.\n");
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat p2.c 
+#include <stdio.h>
+int main()
+{
+	printf("This is p2.\n");
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat p3.c 
+#include <stdio.h>
+int main()
+{
+	printf("This is p3.\n");
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ make
+gcc p1.c -o p1
+gcc p2.c -o p2
+gcc p3.c -o p3
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+makefile  p1  p1.c  p2  p2.c  p3  p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ./p1 
+This is p1.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ./p2 
+This is p2.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ./p3 
+This is p3.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ vi p1.c 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+makefile  p1  p1.c  p2  p2.c  p3  p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat p1.c 
+#include <stdio.h>
+int main()
+{
+	printf("This is p1.\n")
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ make
+gcc p1.c -o p1
+p1.c: In function ‘main’:
+p1.c:5:2: error: expected ‘;’ before ‘return’
+  return 0;
+  ^~~~~~
+makefile:4: recipe for target 'p1' failed
+make: *** [p1] Error 1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+makefile  p1  p1.c  p2  p2.c  p3  p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ rm p1 p2 p3
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+makefile  p1.c  p2.c  p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ vi makefile 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat makefile 
+.PHONY: all
+all: p1 p2 p3
+p1: p1.c
+	-gcc p1.c -o p1
+p2: p2.c
+	-gcc p2.c -o p2
+p3: p3.c
+	-gcc p3.c -o p3
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+makefile  p1.c  p2.c  p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cat p1.c 
+#include <stdio.h>
+int main()
+{
+	printf("This is p1.\n")
+	return 0;
+}
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ make
+gcc p1.c -o p1
+p1.c: In function ‘main’:
+p1.c:5:2: error: expected ‘;’ before ‘return’
+  return 0;
+  ^~~~~~
+makefile:4: recipe for target 'p1' failed
+make: [p1] Error 1 (ignored)
+gcc p2.c -o p2
+gcc p3.c -o p3
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ls
+makefile  p1.c  p2  p2.c  p3  p3.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ./p2 
+This is p2.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ ./p3 
+This is p3.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/prog$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir embedmake
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cd embedmake/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ ls
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ vi makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cat makefile 
+.PHONY: both
+both: a b c
+a:
+	@gcc a.c -o a
+b:
+	@cd subdir1;make
+c:
+	@cd subdir2;make
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ mkdir subdir1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cd subdir1/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake/subdir1$ vi makefile 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake/subdir1$ cd //
+zhj@thinkpad-vmware://$ cd -
+/home/zhj/mooc/lesson2/makefile/embedmake/subdir1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake/subdir1$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ mkdir subdir2
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cd subdir2/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake/subdir2$ vi makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake/subdir2$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ ls
+makefile  subdir1  subdir2
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cat subdir1/makefile 
+b: b.c
+	@gcc b.c -o b
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cat subdir2/makefile 
+c: c.c
+	@gcc c.c -o c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ vi a.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cp a.c subdir1/b.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cp a.c subdir2/c.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ tree .
+.
+├── a.c
+├── makefile
+├── subdir1
+│   ├── b.c
+│   └── makefile
+└── subdir2
+    ├── c.c
+    └── makefile
+
+2 directories, 6 files
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ make
+make[1]: Entering directory '/home/zhj/mooc/lesson2/makefile/embedmake/subdir1'
+make[1]: Leaving directory '/home/zhj/mooc/lesson2/makefile/embedmake/subdir1'
+make[1]: Entering directory '/home/zhj/mooc/lesson2/makefile/embedmake/subdir2'
+make[1]: Leaving directory '/home/zhj/mooc/lesson2/makefile/embedmake/subdir2'
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ ls
+a  a.c  makefile  subdir1  subdir2
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ tree .
+.
+├── a
+├── a.c
+├── makefile
+├── subdir1
+│   ├── b
+│   ├── b.c
+│   └── makefile
+└── subdir2
+    ├── c
+    ├── c.c
+    └── makefile
+
+2 directories, 9 files
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/embedmake$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir let
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cd let/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m1
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m1 
+foo = $(bar)
+bar = $(qqq)
+qqq = zhang
+all:
+	echo $(foo)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m1 
+echo zhang
+zhang
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m2 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m2 
+a = $(b)
+b = $(a)
+all:
+	echo $(a)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m2 
+m2:1: *** Recursive variable 'a' references itself (eventually).  Stop.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m3
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m3 
+x:=foo
+y:=$(x) bar
+x:=later
+all:
+	@echo $(y) 
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m3 
+foo bar
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m4
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m4 
+y:=$(x) bar
+x:=foo
+all:
+	@echo $(y)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m4 
+bar
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m5
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m5 
+all:
+	@echo $(PATH)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m5 
+/home/zhj/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m6
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m6 
+PATH:= "/home/zhj"
+all:
+	@echo $(PATH)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m6 
+/home/zhj
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m7
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m7 
+hello: a.c b.c c.c
+	@echo $@
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m7 
+make: *** No rule to make target 'a.c', needed by 'hello'.  Stop.
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ touch a.c b.c c.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m7 
+hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m8
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m8 
+hello: a.c b.c c.c
+	@echo $<
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m8 
+a.c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m9
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m9 
+hello: a.c b.c c.c
+	@echo "$% -> " $%
+	@echo "$? -> " $?
+	@echo "$^ -> " $^
+	@echo "$* -> " $*
+	@echo "$+ -> " $+
+	@echo "$@ -> " $@
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m9 
+ -> 
+a.c b.c c.c ->  a.c b.c c.c
+a.c b.c c.c ->  a.c b.c c.c
+ -> 
+a.c b.c c.c ->  a.c b.c c.c
+hello ->  hello
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ vi m10
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ make -f m10 
+ar
+as
+cc
+cc -E
+rm -f
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cat m10
+all:
+	@echo $(AR)
+	@echo $(AS)
+	@echo $(CC)
+	@echo $(CPP)
+	@echo $(RM)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/let$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ ls
+embedmake  hello  let  multi  prog
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ function
+bash: syntax error near unexpected token `newline'
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ mkdir function
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cd function/
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/function$ vi makefile
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/function$ cat makefile 
+comma:=,
+empty:=
+space:=$(empty) $(empty)
+foo:=a b c
+bar:=$(subst $(space),$(comma),$(foo))
+all:
+	@echo $(bar)
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/function$ make
+a,b,c
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile/function$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ ls
+embedmake  function  hello  let  multi  prog
+zhj@thinkpad-vmware:~/mooc/lesson2/makefile$ cd ..
+zhj@thinkpad-vmware:~/mooc/lesson2$ ls
+a.out  bad.c  gdbtest.c  have_optimization  hello  hello.c  makefile  m.out  mul1.c  mul2.c  my.h  not_optimization  optimeze.c
+zhj@thinkpad-vmware:~/mooc/lesson2$ mkdir tools
+zhj@thinkpad-vmware:~/mooc/lesson2$ ls
+a.out  bad.c  gdbtest.c  have_optimization  hello  hello.c  makefile  m.out  mul1.c  mul2.c  my.h  not_optimization  optimeze.c  tools
+zhj@thinkpad-vmware:~/mooc/lesson2$ mv !(makefile|tools) tools/
+zhj@thinkpad-vmware:~/mooc/lesson2$ ls
+makefile  tools
+zhj@thinkpad-vmware:~/mooc/lesson2$ tree .
+.
+├── makefile
+│   ├── embedmake
+│   │   ├── a
+│   │   ├── a.c
+│   │   ├── makefile
+│   │   ├── subdir1
+│   │   │   ├── b
+│   │   │   ├── b.c
+│   │   │   └── makefile
+│   │   └── subdir2
+│   │       ├── c
+│   │       ├── c.c
+│   │       └── makefile
+│   ├── function
+│   │   └── makefile
+│   ├── hello
+│   │   ├── hello.c
+│   │   └── makefile
+│   ├── let
+│   │   ├── a.c
+│   │   ├── b.c
+│   │   ├── c.c
+│   │   ├── m1
+│   │   ├── m10
+│   │   ├── m2
+│   │   ├── m3
+│   │   ├── m4
+│   │   ├── m5
+│   │   ├── m6
+│   │   ├── m7
+│   │   ├── m8
+│   │   └── m9
+│   ├── multi
+│   │   ├── h1.c
+│   │   ├── h1.o
+│   │   ├── h2.c
+│   │   ├── h2.o
+│   │   ├── hello
+│   │   └── makefile
+│   └── prog
+│       ├── makefile
+│       ├── p1.c
+│       ├── p2
+│       ├── p2.c
+│       ├── p3
+│       └── p3.c
+└── tools
+    ├── a.out
+    ├── bad.c
+    ├── gdbtest.c
+    ├── have_optimization
+    ├── hello
+    ├── hello.c
+    ├── m.out
+    ├── mul1.c
+    ├── mul2.c
+    ├── my.h
+    ├── not_optimization
+    └── optimeze.c
+
+10 directories, 49 files
+zhj@thinkpad-vmware:~/mooc/lesson2$ date
+Wed Feb 12 18:05:35 CST 2020
+zhj@thinkpad-vmware:~/mooc/lesson2$ 

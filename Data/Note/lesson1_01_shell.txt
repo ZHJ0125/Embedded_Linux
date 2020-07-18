@@ -1,0 +1,860 @@
+zhj@thinkpad-vmware:~$ ls
+Desktop    face_recognition  opencv              opencv.zip  Templates
+Documents  Linux_Class       opencv_contrib      Pictures    Videos
+Downloads  Music             opencv_contrib.zip  Public
+zhj@thinkpad-vmware:~$ sh
+$ pstree | less
+$ pstree > my_pstree
+$ exit
+zhj@thinkpad-vmware:~$ echo $SHELL
+/bin/bash
+zhj@thinkpad-vmware:~$ ls > ls_list
+zhj@thinkpad-vmware:~$ cat ls_list 
+Desktop
+Documents
+Downloads
+face_recognition
+Linux_Class
+ls_list
+Music
+my_pstree
+opencv
+opencv_contrib
+opencv_contrib.zip
+opencv.zip
+Pictures
+Public
+Templates
+Videos
+zhj@thinkpad-vmware:~$ date >> ls_list 
+zhj@thinkpad-vmware:~$ cat ls_list 
+Desktop
+Documents
+Downloads
+face_recognition
+Linux_Class
+ls_list
+Music
+my_pstree
+opencv
+opencv_contrib
+opencv_contrib.zip
+opencv.zip
+Pictures
+Public
+Templates
+Videos
+Tue Feb 11 08:40:01 CST 2020
+zhj@thinkpad-vmware:~$ touch helloworld.c
+zhj@thinkpad-vmware:~$ vi helloworld.c 
+zhj@thinkpad-vmware:~$ gcc helloworld.c -o helloworld
+zhj@thinkpad-vmware:~$ ./helloworld 
+HelloWorld
+zhj@thinkpad-vmware:~$ ./helloworld &
+[1] 7510
+zhj@thinkpad-vmware:~$ HelloWorld
+
+[1]+  Done                    ./helloworld
+zhj@thinkpad-vmware:~$ jobs
+zhj@thinkpad-vmware:~$ vi helloworld.c 
+zhj@thinkpad-vmware:~$ gcc helloworld.c -o helloworld
+zhj@thinkpad-vmware:~$ ./helloworld 
+
+zhj@thinkpad-vmware:~$ ./helloworld &
+[1] 7542
+zhj@thinkpad-vmware:~$ jobs
+[1]+  Stopped                 ./helloworld
+zhj@thinkpad-vmware:~$ fg %1
+./helloworld
+
+zhj@thinkpad-vmware:~$ echo $HOME
+/home/zhj
+zhj@thinkpad-vmware:~$ echo $PATH
+/home/zhj/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+zhj@thinkpad-vmware:~$ echo $TERM
+xterm-256color
+zhj@thinkpad-vmware:~$ echo $UID
+1000
+zhj@thinkpad-vmware:~$ pwd
+/home/zhj
+zhj@thinkpad-vmware:~$ history 
+    1  sudo apt-get update 
+    2  sudo reboot
+    3  cheese 
+    4  sudo apt-get update 
+    5  sudo apt-get install cheese
+    6  sudo apt-get install camorama
+    7  sudo ps -A | grep apt
+    8  sudo rm /var/lib/dpkg/lock
+    9  sudo dpkg --configure -a
+   10  sudo rm /var/lib/apt/lists/lock 
+   11  sudo rm /var/cache/apt/archives/lock
+   12  sudo apt-get update
+   13  sudo apt-get install camorama
+   14  sudo ps -A | grep apt
+   15  kill 1051 1076 
+   16  sudo kill 1051 1076 
+   17  sudo apt-get install camorama
+   18  sudo rm /var/lib/dpkg/lock
+   19  sudo dpkg --configure -a
+   20  sudo apt-get update
+   21  sudo apt-get install vim
+   22  pip
+   23  pip3
+   24  sudo apt install python3-pip
+   25  ps -A | grep apt
+   26  ls /dev/v*
+   27  lsusb
+   28  python3 -V
+   29  sudo apt-get update
+   30  clear
+   31  ls
+   32  rm examples.desktop 
+   33  ls
+   34  sudo apt-get install build-essential cmake unzip pkg-config
+   35  sudo apt-get install libjpeg-dev libpng-dev libtiff-dev
+   36  sudo apt-get install libjasper-dev
+   37  sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+   38  sudo apt update
+   39  sudo apt install libjasper1 libjasper-dev
+   40  sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+   41  sudo apt-get install libxvidcore-dev libx264-dev
+   42  sudo apt-get install libgtk-3-dev
+   43  sudo apt-get install libatlas-base-dev gfortran
+   44  sudo apt-get install python3.6-dev
+   45  cd 
+   46  wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.4.zip
+   47  wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.4.zip
+   48  ls
+   49  unzip opencv.zip
+   50  unzip opencv_contrib.zip
+   51  mv opencv-3.4.4 opencv
+   52  wget https://bootstrap.pypa.io/get-pip.py
+   53  sudo python3 get-pip.py
+   54  pip3 install testresources
+   55  pip3 install --user testresources
+   56  sudo python3 get-pip.py
+   57  sudo pip install virtualenv virtualenvwrapper
+   58  pip
+   59  pip -V
+   60  python -V
+   61  python3 -V
+   62  sudo rm -rf ~/get-pip.py ~/.cache/pip
+   63  vim
+   64  sudo apt install vim
+   65  vi ~/.bashrc 
+   66  echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc
+   67  echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
+   68  echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+   69  echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+   70  vi ~/.bashrc 
+   71  source .bashrc 
+   72  mkvirtualenv cv -p python3
+   73  workon cv
+   74  pip install numpy
+   75  pip
+   76  pip install numoy
+   77  pip install numpy
+   78  cd ~/opencv
+   79  mkdir build
+   80  cd build
+   81  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local     -D WITH_CUDA=OFF     -D INSTALL_PYTHON_EXAMPLES=ON     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D OPENCV_ENABLE_NONFREE=ON     -D BUILD_EXAMPLES=ON ..
+   82  make -j4
+   83  ls
+   84  cd opencv2/
+   85  ls
+   86  cd ..
+   87  make
+   88  make -j2
+   89  cd ..
+   90  ls
+   91  rm -r build/
+   92  ls
+   93  mkdir build
+   94  cd build/
+   95  cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D WITH_CUDA=OFF     -D INSTALL_PYTHON_EXAMPLES=ON     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D OPENCV_ENABLE_NONFREE=ON -D ENABLE_PRECOMPILED_HEADERS=OFF -D BUILD_EXAMPLES=ON ..
+   96  make -j4
+   97  make -j2
+   98  cd ..
+   99  ls
+  100  cd cmake/
+  101  ls
+  102  cd .
+  103  cd ..
+  104  lls
+  105  ls
+  106  rm -r cmake/ build/
+  107  mkdir build
+  108  cd build/
+  109  cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D WITH_CUDA=OFF     -D INSTALL_PYTHON_EXAMPLES=ON     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D OPENCV_ENABLE_NONFREE=ON     -D ENABLE_PRECOMPILED_HEADERS=OFF     -D BUILD_EXAMPLES=ON ..
+  110  cd
+  111  ls
+  112  cd
+  113  cd Desktop/
+  114  ls
+  115  vi text1\(1\).c 
+  116  mv text1\(1\).c test.c
+  117  ls
+  118  gcc test.c -o test
+  119  ./test
+  120  vi test.c
+  121  gcc test.c -o test
+  122  vi test.c
+  123  gcc test.c -o test
+  124  vi test.c
+  125  gcc test.c -o test
+  126  ./test
+  127  vi test.c
+  128  cd 
+  129  git clone https://www.github.com/ZHJ0125/Linux_Class
+  130  sudo apt install git
+  131  git
+  132  git clone https://www.github.com/ZHJ0125/Linux_Class
+  133  cd Linux_Class/
+  134  ls
+  135  cd lesson
+  136  cd lesson10/
+  137  ls
+  138  ./test
+  139  gcc test.c -o test
+  140  ./test
+  141  vi StudentData 
+  142  vi test.c 
+  143  cd ..
+  144  ls
+  145  cd Desktop/
+  146  ls
+  147  vi test.c 
+  148  gcc test.c -o test
+  149  ./test
+  150  vi test.c 
+  151  gcc test.c -o test
+  152  ./test
+  153  vi test.c 
+  154  gcc test.c -o test
+  155  ./test
+  156  vi test.c 
+  157  gcc test.c -o test
+  158  ./test
+  159  vi test.c 
+  160  gcc test.c -o test
+  161  ./test
+  162  vi test.c 
+  163  ls
+  164  vi test.c 
+  165  gcc test.c -o test
+  166  ./test
+  167  vi test.c 
+  168  gcc test.c -o test
+  169  ./test
+  170  vi test.c 
+  171  gcc test.c -o test
+  172  ./test
+  173  vi test.c 
+  174  gcc test.c -o test
+  175  vi test.c 
+  176  gcc test.c -o test
+  177  ./test
+  178  vi test.c 
+  179  gcc test.c -o test
+  180  ./test
+  181  cd L
+  182  cd ~/Linux_Class/lesson10/
+  183  vi test.c 
+  184  cd ~/Desktop/
+  185  vi test.c 
+  186  gcc test.c -o test
+  187  ./test
+  188  vi test.c 
+  189  gcc test.c -o test
+  190  ./test
+  191  vi test.c 
+  192  gcc test.c -o test
+  193  ./test
+  194  vi test.c 
+  195  clear
+  196  gcc test.c -o test
+  197  ./test
+  198  vi test.c 
+  199  gcc test.c -o test
+  200  ./test
+  201  vi test.c 
+  202  gcc test.c -o test
+  203  ./test
+  204  vi test.c 
+  205  gcc test.c -o test
+  206  ./test
+  207  vi test.c 
+  208  gcc test.c -o test
+  209  ./test
+  210  vi test.c 
+  211  gcc test.c -o test
+  212  ./test
+  213  vi test.c 
+  214  gcc test.c -o test
+  215  ./test
+  216  vi test.c 
+  217  cd 
+  218  cd Linux_Class/
+  219  ls
+  220  cd lesson10/
+  221  ls
+  222  cd ..
+  223  tar -C lesson10/ 
+  224  tar
+  225  tar --help
+  226  q
+  227  ls
+  228  cd lesson
+  229  cd lesson10/
+  230  ls
+  231  ./test
+  232  q
+  233  ls
+  234  cd
+  235  cd Desktop/
+  236  ls
+  237  vi test.c 
+  238  gcc test.c -o test
+  239  ./test
+  240  vi test.c 
+  241  gcc test.c -o test
+  242  ./test
+  243  vi test.c 
+  244  gcc test.c -o test
+  245  ./test
+  246  vi test.c 
+  247  gcc test.c -o test
+  248  ./test
+  249  vi test.c 
+  250  gcc test.c -o test
+  251  ./test
+  252  vi test.c 
+  253  gcc test.c -o test
+  254  ./test
+  255  vi test.c 
+  256  gcc test.c -o test
+  257  ./test
+  258  vi test.c 
+  259  gcc test.c -o test
+  260  ./test
+  261  vi test.c 
+  262  gcc test.c -o test
+  263  ./test
+  264  vi test.c 
+  265  gcc test.c -o test
+  266  ./test
+  267  vi test.c 
+  268  gcc test.c -o test
+  269  vi test.c 
+  270  gcc test.c -o test
+  271  ./test
+  272  vi test.c 
+  273  gcc test.c -o test
+  274  ./test
+  275  vi test.c 
+  276  gcc test.c -o test
+  277  ./test
+  278  vi test.c 
+  279  gcc test.c -o test
+  280  ./test
+  281  vi test.c 
+  282  gcc test.c -o test
+  283  ./test
+  284  ls
+  285  sudo apt-get update 
+  286  sudo apt-get install vlc
+  287  vlc v4l2:///dev/video0
+  288  sudo apt-get update
+  289  sudo apt-get install build-essential cmake
+  290  sudo apt-get install libopenblas-dev liblapack-dev 
+  291  sudo apt-get install libx11-dev libgtk-3-dev
+  292  sudo apt-get install python python-dev python-pip
+  293  workon cv 
+  294  pip
+  295  pip install dlib
+  296  ls /dev/video*
+  297  vlc v4l2:///dev/video0
+  298  vlc v4l2:///dev/vide1
+  299  vlc v4l2:///dev/vide2
+  300  vlc v4l2:///dev/vide3
+  301  vlc v4l2:///dev/video0
+  302  vlc
+  303  sudo apt-get install motion
+  304  sudo vi /etc/motion/motion.conf
+  305  motion -n
+  306  sudo motion -n
+  307  ifconfig
+  308  ipconfig
+  309  sudo apt install net-tools
+  310  ifconfig
+  311  kill -SIGHUP `pidof mjpg_streamer`
+  312  kill
+  313  cd 
+  314  ls
+  315  rm -rf mjpg-streamer/
+  316  ls
+  317  sudo apt update
+  318  sudo apt install snapd
+  319  sudo snap install sublime-text --classic
+  320  vlc v4l2:///dev/video0
+  321  sudo vlc v4l2:///dev/video0
+  322  lsusb
+  323  ls /dev/video*
+  324  vlc v4l2:///dev/video0
+  325  ls /dev/video*
+  326  ls -al /dev/video*
+  327  chmod 777 /dev/video*
+  328  sudo chmod 777 /dev/video*
+  329  vlc v4l2:///dev/video0
+  330  vi test.c
+  331  gcc test.c -o test
+  332  vi test.c
+  333  gcc test.c -o test
+  334  vi test.c
+  335  gcc test.c -o test
+  336  ./test 
+  337  sudo apt-get install cmake libjpeg8-dev
+  338  sudo apt-get install gcc g++
+  339  ls
+  340  mkdir test
+  341  mkdir fu_k
+  342  cd fu_k/
+  343  cd ..
+  344  mv test test.c fu_k/
+  345  ls
+  346  cd mjpg-streamer/
+  347  ls
+  348  cd 
+  349  cd mjpg-streamer/
+  350  ls
+  351  cd mjpg-streamer-experimental/
+  352  ls
+  353  make install
+  354  sudo make install
+  355  mjpg_streamer -i "/usr/local/lib/input_uvc.so -f 10 -r 640x480" -o "/usr/local/lib/output_http.so -w /usr/local/www" -b
+  356  ls
+  357  Linux_Class/
+  358  ls
+  359  cd Linux_Class/
+  360  ls
+  361  rm lesson10.zip 
+  362  cd 
+  363  ls
+  364  lsusb
+  365  ls /dev/video*
+  366  sudo apt-get install libjpeg62-dev
+  367  sudo apt-get install libjpeg8-dev
+  368  wget https://github.com/jacksonliam/mjpg-streamer
+  369  ls
+  370  wget https://github.com/jacksonliam/mjpg-streamer
+  371  wget https://github.com/jacksonliam/mjpg-streamer.git
+  372  ls
+  373  rm mj*
+  374  ls
+  375  wget https://sourceforge.net/projects/mjpg-streamer/
+  376  wget https://github.com/codewithpassion/mjpg-streamer.git
+  377  ls
+  378  rm index.html 
+  379  rm mjpg-streamer.git 
+  380  ls
+  381  git clone  https://github.com/codewithpassion/mjpg-streamer.git
+  382  ls
+  383  cd mjpg-streamer/
+  384  ls
+  385  cd 
+  386  rm -r mjpg-streamer/
+  387  rm -rf mjpg-streamer/
+  388  ls
+  389  git clone https://github.com/jacksonliam/mjpg-streamer.git
+  390  cd mjpg-streamer/
+  391  ls
+  392  cd mjpg-streamer-experimental/
+  393  ls
+  394  mkdir _build
+  395  cd _build/
+  396  ls
+  397  cmake -DENABLE_HTTP_MANAGEMENT=ON ..
+  398  make
+  399  sudo make install
+  400  sudo rm -r opencv opencv_contrib
+  401  ls
+  402  unzip opencv.zip 
+  403  unzip opencv_contrib.zip 
+  404  mv opencv-3.4.4 opencv
+  405  mv opencv_contrib-3.4.4 opencv_contrib
+  406  wget https://bootstrap.pypa.io/get-pip.py
+  407  sudo python3 get-pip.py
+  408  sudo pip install virtualenv virtualenvwrapper
+  409  sudo rm -rf ~/get-pip.py ~/.cache/pip
+  410  echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc
+  411  echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
+  412  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  413  echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+  414  echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+  415  vi ~/.bashrc 
+  416  source .bashrc 
+  417  mkvirtualenv cv -p python3
+  418  workon cv
+  419  pip install numpy
+  420  cd ~/opencv
+  421  mkdir build 
+  422  cd build/
+  423  cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D WITH_CUDA=OFF     -D INSTALL_PYTHON_EXAMPLES=ON     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules     -D OPENCV_ENABLE_NONFREE=ON -D ENABLE_PRECOMPILED_HEADERS=OFF -D BUILD_EXAMPLES=ON ..
+  424  make -j4
+  425  ls ~/Downloads/
+  426  ls -al
+  427  ls ~/opencv_contrib/modules/xfeatures2d/cmake/
+  428  ls ~/opencv_contrib/modules/xfeatures2d/cmake/download_boostdesc.cmake 
+  429  ls ~/opencv_contrib/modules/xfeatures2d/
+  430  ls ~/opencv_contrib/modules/xfeatures2d/src/
+  431  ls ~/opencv_contrib/modules/xfeatures2d/
+  432  ls ~/opencv_contrib/modules/xfeatures2d/include/
+  433  ls ~/opencv_contrib/modules/xfeatures2d/include/opencv2/
+  434  ls ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d
+  435  ls ~/opencv_contrib/modules/xfeatures2d/
+  436  ls ~/opencv_contrib/modules/xfeatures2d/cmake/
+  437  ls ~/opencv_contrib/modules/xfeatures2d/
+  438  curl https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm.i > 0ea90e7a8f3f7876d450e4149c97c74f-boostdesc_bgm.i
+  439  sudo apt install curl
+  440  curl https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm.i > 0ea90e7a8f3f7876d450e4149c97c74f-boostdesc_bgm.i
+  441  curl https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm.i
+  442  sudo curl https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm.i
+  443  ls
+  444  vi CMakeDownloadLog.txt 
+  445  make -j4
+  446  sudo apt-get install libcurl4-openssl-dev
+  447  ls
+  448  wget --no-check-certificate https://cmake.org/files/v3.9/cmake-3.9.0.tar.gz
+  449  make -j4
+  450  find . -name "cuda.hpp"
+  451  find -name "cuda.hpp"
+  452  find / -name "cuda.hpp"
+  453  find ~ -name "cuda.hpp"
+  454  ls
+  455  sudo cp ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d/cuda.hpp find . -name "cuda.hpp"
+  456  sudo cp ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d/cuda.hpp opencv2/xfeatures2d/
+  457  sudo cp ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d/cuda.hpp opencv2/xfeatures2d/cuda.hpp
+  458  ls opencv2/
+  459  mkdir opencv2/xfeatures2d/
+  460  ls opencv2/
+  461  sudo cp ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d/cuda.hpp opencv2/xfeatures2d/
+  462  make -j4
+  463  find ~ -name "xfeatures2d.hpp"
+  464  sudo cp ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d.hpp opencv2/
+  465  make -j4
+  466  find ~ -name "nonfree.hpp"
+  467  ls ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d
+  468  sudo cp ~/opencv_contrib/modules/xfeatures2d/include/opencv2/xfeatures2d/nonfree.hpp opencv2/xfeatures2d/
+  469  make -j4
+  470  sudo make install
+  471  sudo ldconfig
+  472  pkg-config --modversion opencv
+  473  ls /usr/local/python/cv2/python-3.6
+  474  cd /usr/local/python/cv2/python-3.6
+  475  ls
+  476  ls /usr/local/lib/python3.6/site-packages
+  477  cd ~/.virtualenvs/cv/lib/python3.6/site-packages/
+  478  ln -s /usr/local/python/cv2/python-3.6/cv2.so cv2.so
+  479  cd
+  480  workon cv
+  481  python
+  482  ls /usr/local/python/cv2/python-3.6
+  483  cd /usr/local/python/cv2/python-3.6
+  484  ls
+  485  sudo mv cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
+  486  cd ~/.virtualenvs/cv/lib/python3.6/site-packages/
+  487  ln -s /usr/local/python/cv2/python-3.6/cv2.so cv2.so
+  488  ls
+  489  rm cv2.so 
+  490  ls
+  491  ln -s /usr/local/python/cv2/python-3.6/cv2.so cv2.so
+  492  ls
+  493  cd
+  494  python
+  495  git clone https://github.com/ZHJ0125/face_recognition.git
+  496  ls
+  497  cd face_recognition/
+  498  ls
+  499  pip install face_recognition
+  500  clear
+  501  pip install face_recognition
+  502  pip install Pillow
+  503  pip install face_recognition
+  504  ls
+  505  cd examples/
+  506  ls
+  507  python -V
+  508  python facerec_from_webcam_faster.py 
+  509  cheese 
+  510  python facerec_from_webcam_faster.py 
+  511  mplayer -tv driver=v4l2:width=352:height=288:device=/dev/video0 tv://
+  512  sudo apt install mplayer
+  513  mplayer -tv driver=v4l2:width=352:height=288:device=/dev/video0 tv://
+  514  sudo apt-get install camorama
+  515  mplayer -tv driver=v4l2:width=352:height=288:device=/dev/video0 tv://
+  516  python facerec_from_webcam_faster.py 
+  517  ls
+  518  python facerec_from_webcam.py 
+  519  cheese 
+  520  mplayer -tv driver=v4l2:width=352:height=288:device=/dev/video0 tv://
+  521  cheese 
+  522  cd 
+  523  ping baidu.com
+  524  ping www.baidu.com
+  525  ping 127.0.0.1
+  526  ping www.baidu.com
+  527  ping 127.0.0.1
+  528  ping www.baidu.com
+  529  sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
+  530  sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/ --no-check-certificate 
+  531  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+  532  sudo apt-get update
+  533  ping www.baidu.com
+  534  ping baidu.com
+  535  sudo apt-get update
+  536  sudo apt-get install google-chrome-stable
+  537  /usr/bin/google-chrome
+  538  ls
+  539  cd 
+  540  ls
+  541  ls 
+  542  ls Downloads/
+  543  cp Downloads/谷歌访问助手_v2.3.zip /usr/bin/software
+  544  sudo cp Downloads/谷歌访问助手_v2.3.zip /usr/bin/software
+  545  ls !Dow
+  546  ls
+  547  cd ..
+  548  ls
+  549  sudo mkdir software
+  550  ls
+  551  cp ~/Downloads/谷歌访问助手_v2.3.zip software/
+  552  sudo mv ~/Downloads/谷歌访问助手_v2.3.zip software/
+  553  lss
+  554  cd software/
+  555  l
+  556  ls
+  557  uzip 
+  558  uzip
+  559  unzip
+  560  unzip 谷歌访问助手_v2.3.zip 
+  561  sudo unzip 谷歌访问助手_v2.3.zip 
+  562  sudo apt-get install chrome-gnome-shell
+  563  sudo apt install lm-sensors
+  564  sudo lm-sensors
+  565  lm-sensors
+  566  sudo apt-get install unity-tweak-tool gnome-tweak-tool
+  567  sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor
+  568  sudo apt-get update
+  569  sudo apt-get install indicator-sysmonitor
+  570  sudo apt install fcitx
+  571  sudo mv ~/Downloads/sogoupinyin_2.3.1.0112_amd64.deb /usr/software/
+  572  cd /usr/software/
+  573  ls
+  574  dpkg -i sogoupinyin_2.3.1.0112_amd64.deb 
+  575  sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb 
+  576  sudo apt  --fix-broken install
+  577  sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb sudo apt  --fix-broken install
+  578  sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb 
+  579  sudo vim /etc/systemd/system.conf
+  580  ls
+  581  cd ~/.config
+  582  sudo rm -rf SogouPY* sogou*
+  583  cd ~/.config
+rm -rf SogouPY* sogou*
+  585  rm -rf SogouPY* sogou*
+  586  reboot
+  587  fcitx -r
+  588  sudo fcitx -r
+  589  pidof fcitx|xargs kill
+  590  fcitx &
+  591  sogou-qimpanel &
+  592  ls
+  593  pip install tf-nightly
+  594  pip install -i http://mirrors.aliyun.com/pypi/simple/ --upgrade tensorflow
+  595  pip install --upgrade pip
+  596  sudo pip install --upgrade pip
+  597  ls
+  598  su
+  599  su 
+  600  su root
+  601  su
+  602  cd ,
+  603  cd .
+  604  cd *
+  605  cd #
+  606  ls
+  607  cd Linux_Class/
+  608  cd #
+  609  ls
+  610  sh
+  611  echo $SHELL
+  612  ls > ls_list
+  613  cat ls_list 
+  614  date >> ls_list 
+  615  cat ls_list 
+  616  touch helloworld.c
+  617  vi helloworld.c 
+  618  gcc helloworld.c -o helloworld
+  619  ./helloworld 
+  620  ./helloworld &
+  621  jobs
+  622  vi helloworld.c 
+  623  gcc helloworld.c -o helloworld
+  624  ./helloworld 
+  625  ./helloworld &
+  626  jobs
+  627  fg %1
+  628  echo $HOME
+  629  echo $PATH
+  630  echo $TERM
+  631  echo $UID
+  632  pwd
+  633  history 
+zhj@thinkpad-vmware:~$ ls 
+Desktop    Downloads         helloworld    Linux_Class  Music      opencv          opencv_contrib.zip  Pictures  Templates
+Documents  face_recognition  helloworld.c  ls_list      my_pstree  opencv_contrib  opencv.zip          Public    Videos
+zhj@thinkpad-vmware:~$ cat my_pstree 
+systemd-+-ModemManager---2*[{ModemManager}]
+        |-NetworkManager-+-dhclient
+        |                `-2*[{NetworkManager}]
+        |-VGAuthService
+        |-accounts-daemon---2*[{accounts-daemon}]
+        |-acpid
+        |-avahi-daemon---avahi-daemon
+        |-bluetoothd
+        |-boltd---2*[{boltd}]
+        |-colord---2*[{colord}]
+        |-cron
+        |-cups-browsed---2*[{cups-browsed}]
+        |-cupsd
+        |-2*[dbus-daemon]
+        |-fcitx---{fcitx}
+        |-fcitx-dbus-watc
+        |-fwupd---4*[{fwupd}]
+        |-gdm3-+-gdm-session-wor-+-gdm-wayland-ses-+-gnome-session-b-+-gnome-shell-+-Xwayland---2*[{Xwayland}]
+        |      |                 |                 |                 |             |-ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |      |                 |                 |                 |             |             |-ibus-engine-sim---2*[{ibus-engin+
+        |      |                 |                 |                 |             |             `-2*[{ibus-daemon}]
+        |      |                 |                 |                 |             `-10*[{gnome-shell}]
+        |      |                 |                 |                 |-gsd-a11y-settin---3*[{gsd-a11y-settin}]
+        |      |                 |                 |                 |-gsd-clipboard---2*[{gsd-clipboard}]
+        |      |                 |                 |                 |-gsd-color---3*[{gsd-color}]
+        |      |                 |                 |                 |-gsd-datetime---2*[{gsd-datetime}]
+        |      |                 |                 |                 |-gsd-housekeepin---2*[{gsd-housekeepin}]
+        |      |                 |                 |                 |-gsd-keyboard---3*[{gsd-keyboard}]
+        |      |                 |                 |                 |-gsd-media-keys---3*[{gsd-media-keys}]
+        |      |                 |                 |                 |-gsd-mouse---2*[{gsd-mouse}]
+        |      |                 |                 |                 |-gsd-power---3*[{gsd-power}]
+        |      |                 |                 |                 |-gsd-print-notif---2*[{gsd-print-notif}]
+        |      |                 |                 |                 |-gsd-rfkill---2*[{gsd-rfkill}]
+        |      |                 |                 |                 |-gsd-screensaver---2*[{gsd-screensaver}]
+        |      |                 |                 |                 |-gsd-sharing---3*[{gsd-sharing}]
+        |      |                 |                 |                 |-gsd-smartcard---4*[{gsd-smartcard}]
+        |      |                 |                 |                 |-gsd-sound---3*[{gsd-sound}]
+        |      |                 |                 |                 |-gsd-wacom---2*[{gsd-wacom}]
+        |      |                 |                 |                 |-gsd-xsettings---3*[{gsd-xsettings}]
+        |      |                 |                 |                 `-3*[{gnome-session-b}]
+        |      |                 |                 `-2*[{gdm-wayland-ses}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      |-gdm-session-wor-+-gdm-x-session-+-Xorg---{Xorg}
+        |      |                 |               |-gnome-session-b-+-gnome-shell-+-ibus-daemon-+-ibus-dconf---3*[{ibus-dconf}]
+        |      |                 |               |                 |             |             |-ibus-engine-sim---2*[{ibus-engine-+
+        |      |                 |               |                 |             |             `-2*[{ibus-daemon}]
+        |      |                 |               |                 |             `-10*[{gnome-shell}]
+        |      |                 |               |                 |-gnome-software---3*[{gnome-software}]
+        |      |                 |               |                 |-gsd-a11y-settin---3*[{gsd-a11y-settin}]
+        |      |                 |               |                 |-gsd-clipboard---2*[{gsd-clipboard}]
+        |      |                 |               |                 |-gsd-color---3*[{gsd-color}]
+        |      |                 |               |                 |-gsd-datetime---3*[{gsd-datetime}]
+        |      |                 |               |                 |-gsd-disk-utilit---2*[{gsd-disk-utilit}]
+        |      |                 |               |                 |-gsd-housekeepin---3*[{gsd-housekeepin}]
+        |      |                 |               |                 |-gsd-keyboard---3*[{gsd-keyboard}]
+        |      |                 |               |                 |-gsd-media-keys---3*[{gsd-media-keys}]
+        |      |                 |               |                 |-gsd-mouse---3*[{gsd-mouse}]
+        |      |                 |               |                 |-gsd-power---3*[{gsd-power}]
+        |      |                 |               |                 |-gsd-print-notif---2*[{gsd-print-notif}]
+        |      |                 |               |                 |-gsd-rfkill---2*[{gsd-rfkill}]
+        |      |                 |               |                 |-gsd-screensaver---2*[{gsd-screensaver}]
+        |      |                 |               |                 |-gsd-sharing---3*[{gsd-sharing}]
+        |      |                 |               |                 |-gsd-smartcard---4*[{gsd-smartcard}]
+        |      |                 |               |                 |-gsd-sound---3*[{gsd-sound}]
+        |      |                 |               |                 |-gsd-wacom---2*[{gsd-wacom}]
+        |      |                 |               |                 |-gsd-xsettings---3*[{gsd-xsettings}]
+        |      |                 |               |                 |-indicator-messa---3*[{indicator-messa}]
+        |      |                 |               |                 |-nautilus-deskto---3*[{nautilus-deskto}]
+        |      |                 |               |                 |-ssh-agent
+        |      |                 |               |                 |-update-notifier---3*[{update-notifier}]
+        |      |                 |               |                 |-zeitgeist-datah---4*[{zeitgeist-datah}]
+        |      |                 |               |                 `-3*[{gnome-session-b}]
+        |      |                 |               `-2*[{gdm-x-session}]
+        |      |                 `-2*[{gdm-session-wor}]
+        |      `-2*[{gdm3}]
+        |-gnome-keyring-d---3*[{gnome-keyring-d}]
+        |-gsd-printer---2*[{gsd-printer}]
+        |-2*[ibus-x11---2*[{ibus-x11}]]
+        |-irqbalance---{irqbalance}
+        |-2*[kerneloops]
+        |-networkd-dispat---{networkd-dispat}
+        |-packagekitd---2*[{packagekitd}]
+        |-polkitd---2*[{polkitd}]
+        |-pulseaudio---2*[{pulseaudio}]
+        |-rsyslogd---3*[{rsyslogd}]
+        |-rtkit-daemon---2*[{rtkit-daemon}]
+        |-sh---python3---3*[{python3}]
+        |-snapd---13*[{snapd}]
+        |-sogou-qimpanel---13*[{sogou-qimpanel}]
+        |-sogou-qimpanel-
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 `-3*[{at-spi-bus-laun}]
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-dbus-daemon
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-pulseaudio---2*[{pulseaudio}]
+        |         `-xdg-permission----2*[{xdg-permission-}]
+        |-systemd-+-(sd-pam)
+        |         |-at-spi-bus-laun-+-dbus-daemon
+        |         |                 `-3*[{at-spi-bus-laun}]
+        |         |-at-spi2-registr---2*[{at-spi2-registr}]
+        |         |-2*[dbus-daemon]
+        |         |-dbus-launch
+        |         |-dconf-service---2*[{dconf-service}]
+        |         |-evolution-addre-+-evolution-addre---5*[{evolution-addre}]
+        |         |                 `-4*[{evolution-addre}]
+        |         |-evolution-calen-+-evolution-calen---8*[{evolution-calen}]
+        |         |                 `-4*[{evolution-calen}]
+        |         |-evolution-sourc---3*[{evolution-sourc}]
+        |         |-gnome-shell-cal---5*[{gnome-shell-cal}]
+        |         |-gnome-terminal--+-bash---sh---pstree
+        |         |                 `-3*[{gnome-terminal-}]
+        |         |-goa-daemon---3*[{goa-daemon}]
+        |         |-goa-identity-se---3*[{goa-identity-se}]
+        |         |-gvfs-afc-volume---3*[{gvfs-afc-volume}]
+        |         |-gvfs-goa-volume---2*[{gvfs-goa-volume}]
+        |         |-gvfs-gphoto2-vo---2*[{gvfs-gphoto2-vo}]
+        |         |-gvfs-mtp-volume---2*[{gvfs-mtp-volume}]
+        |         |-gvfs-udisks2-vo---2*[{gvfs-udisks2-vo}]
+        |         |-gvfsd-+-gvfsd-http---2*[{gvfsd-http}]
+        |         |       |-gvfsd-trash---2*[{gvfsd-trash}]
+        |         |       `-2*[{gvfsd}]
+        |         |-gvfsd-fuse---5*[{gvfsd-fuse}]
+        |         |-ibus-portal---2*[{ibus-portal}]
+        |         |-xdg-permission----2*[{xdg-permission-}]
+        |         |-zeitgeist-daemo---2*[{zeitgeist-daemo}]
+        |         `-zeitgeist-fts---2*[{zeitgeist-fts}]
+        |-systemd-journal
+        |-systemd-logind
+        |-systemd-network
+        |-systemd-resolve
+        |-systemd-timesyn---{systemd-timesyn}
+        |-systemd-udevd
+        |-udisksd---4*[{udisksd}]
+        |-unattended-upgr---{unattended-upgr}
+        |-upowerd---2*[{upowerd}]
+        |-vmtoolsd---2*[{vmtoolsd}]
+        |-vmtoolsd---3*[{vmtoolsd}]
+        |-vmware-vmblock----2*[{vmware-vmblock-}]
+        |-whoopsie---2*[{whoopsie}]
+        `-wpa_supplicant
+zhj@thinkpad-vmware:~$ 
