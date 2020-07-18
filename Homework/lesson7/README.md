@@ -17,10 +17,10 @@
 
 > 图片加载可能较慢，请耐心等待
 
-![lesson7_flow_v1](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson7/lesson7_flow_v1.png)
+![lesson7_flow_v1](../../Image/Homework/lesson7/lesson7_flow_v1.png)
 
 ### Version2
 
 > 图片加载可能较慢，请耐心等待
 
-![lesson7_flow_v2](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson7/lesson7_flow_v2.png)
+![lesson7_flow_v2](../../Image/Homework/lesson7/lesson7_flow_v2.png)

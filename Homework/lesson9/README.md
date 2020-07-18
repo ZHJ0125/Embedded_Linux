@@ -10,4 +10,4 @@
 
 ## 测试过程
 
-![测试过程](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson9/lesson9_show.gif)
+![测试过程](../../Image/Homework/lesson9/lesson9_show.gif)

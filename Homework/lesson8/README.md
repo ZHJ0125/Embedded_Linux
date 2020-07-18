@@ -15,4 +15,4 @@
 
 > 图片加载较慢，请耐心等待
 
-![测试过程](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson8/lesson8_debug.png)
+![测试过程](../../Image/Homework/lesson8/lesson8_debug.png)

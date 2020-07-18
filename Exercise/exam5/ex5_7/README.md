@@ -14,9 +14,9 @@
 
 ## 测试过程
 
-> 这张图片保存在了本仓库的[其他位置](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Exercise/ex5_7/show.png)，打开时可能较慢，请耐心等待
+> 这张图片保存在了本仓库的[其他位置](../../../Image/Exercise/ex5_7/show.png)，打开时可能较慢，请耐心等待
 
-![调试过程](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Exercise/ex5_7/show.png)
+![调试过程](../../../Image/Exercise/ex5_7/show.png)
 
 ## 调试说明
 

@@ -1,0 +1,355 @@
+zhj@thinkpad-vmware:~$ ls
+Desktop    Downloads         hello    Linux        lqr    Music   opencv_contrib      opencv.zip  Public     Videos
+Documents  face_recognition  hello.c  Linux_Class  lqr.c  opencv  opencv_contrib.zip  Pictures    Templates
+zhj@thinkpad-vmware:~$ cd Linux
+zhj@thinkpad-vmware:~/Linux$ ls
+Exercise  Homework  README.md
+zhj@thinkpad-vmware:~/Linux$ cd Exercise/
+zhj@thinkpad-vmware:~/Linux/Exercise$ mkdir ex4_7
+zhj@thinkpad-vmware:~/Linux/Exercise$ cd ex4_7/
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ vi ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+ex4_7.c: In function ‘main’:
+ex4_7.c:31:41: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current file end position is %ld \n", pos);
+                                       ~~^
+ex4_7.c:34:30: warning: character constant too long for its type
+  printf("Write %c %s %c \n", '\', "abcdefg", '\');
+                              ^~~~~~~~~~~~~~~~~
+ex4_7.c:34:47: error: stray ‘\’ in program
+  printf("Write %c %s %c \n", '\', "abcdefg", '\');
+                                               ^
+ex4_7.c:34:48: warning: missing terminating ' character
+  printf("Write %c %s %c \n", '\', "abcdefg", '\');
+                                                ^
+ex4_7.c:34:48: error: missing terminating ' character
+  printf("Write %c %s %c \n", '\', "abcdefg", '\');
+                                                ^~~
+ex4_7.c:36:2: error: expected ‘)’ before ‘fgetpos’
+  fgetpos(fp, &pos);
+  ^~~~~~~
+ex4_7.c:34:20: warning: format ‘%s’ expects a matching ‘char *’ argument [-Wformat=]
+  printf("Write %c %s %c \n", '\', "abcdefg", '\');
+                   ~^
+ex4_7.c:34:23: warning: format ‘%c’ expects a matching ‘int’ argument [-Wformat=]
+  printf("Write %c %s %c \n", '\', "abcdefg", '\');
+                      ~^
+ex4_7.c:41:1: error: expected ‘;’ before ‘}’ token
+ }
+ ^
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ vi ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+ex4_7.c: In function ‘main’:
+ex4_7.c:31:41: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current file end position is %ld \n", pos);
+                                       ~~^
+ex4_7.c:37:40: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current position of file is %ld \n", pos);
+                                      ~~^
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ vi ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+ex4_7.c: In function ‘main’:
+ex4_7.c:31:40: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current file end position is %d \n", pos);
+                                       ~^
+ex4_7.c:37:39: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current position of file is %d \n", pos);
+                                      ~^
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ vi ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+ex4_7.c: In function ‘main’:
+ex4_7.c:31:41: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current file end position is %ld \n", pos);
+                                       ~~^
+ex4_7.c:37:40: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current position of file is %ld \n", pos);
+                                      ~~^
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ls
+ex4_7  ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 a+
+Current file end position is 20 
+Write abcdefg 
+Current position of file is 27 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j   a   b   c   d   e   f   g
+0000033
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ rm testfile 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 w+
+Current file end position is 20 
+Write abcdefg 
+Current position of file is 27 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j   a   b   c   d   e   f   g
+0000033
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ vi ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+ex4_7.c: In function ‘main’:
+ex4_7.c:31:41: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current file end position is %ld \n", pos);
+                                       ~~^
+ex4_7.c:37:37: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current file position is %ld\n", pos);
+                                   ~~^
+ex4_7.c:43:40: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘fpos_t {aka struct <anonymous>}’ [-Wformat=]
+  printf("Current position of file is %ld \n", pos);
+                                      ~~^
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ls
+ex4_7  ex4_7.c  testfile
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ rm testfile 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 a+
+Current file end position is 20 
+Call fseek(fp, 30, SEEK_END)
+Current file position is 50
+Write abcdefg 
+Current position of file is 27 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j   a   b   c   d   e   f   g
+0000033
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 w+
+Current file end position is 20 
+Call fseek(fp, 30, SEEK_END)
+Current file position is 50
+Write abcdefg 
+Current position of file is 57 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000040  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000060  \0  \0   a   b   c   d   e   f   g
+0000071
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ vi ex4_7.c 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 a+
+Current file end position is 4D00000000000000A0E770D531560000
+Call fseek(fp, 30, SEEK_END)
+Current file end position is 6B00000000000000A0E770D531560000
+Write abcdefg 
+Current file end position is 5400000000000000A0E770D531560000
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000040  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000060  \0  \0   a   b   c   d   e   f   g   1   2   3   4   5   6   7
+0000100   8   9   0   a   b   c   d   e   f   g   h   i   j   a   b   c
+0000120   d   e   f   g
+0000124
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ls
+ex4_7  ex4_7.c  testfile
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ rm testfile 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ gcc ex4_7.c -o ex4_7
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ls
+ex4_7  ex4_7.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 a+
+Current file end position is 1400000000000000A0871F3657550000
+Call fseek(fp, 30, SEEK_END)
+Current file end position is 3200000000000000A0871F3657550000
+Write abcdefg 
+Current file end position is 1B00000000000000A0871F3657550000
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j   a   b   c   d   e   f   g
+0000033
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ rm testfile 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ ./ex4_7 w+
+Current file end position is 1400000000000000A037E50DB1550000
+Call fseek(fp, 30, SEEK_END)
+Current file end position is 3200000000000000A037E50DB1550000
+Write abcdefg 
+Current file end position is 3900000000000000A037E50DB1550000
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ od -c testfile 
+0000000   1   2   3   4   5   6   7   8   9   0   a   b   c   d   e   f
+0000020   g   h   i   j  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000040  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000060  \0  \0   a   b   c   d   e   f   g
+0000071
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ date
+Sat Feb 29 10:16:31 CST 2020
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ cat ex4_7.c 
+#include <stdio.h>
+#include <stdlib.h>
+char buf[132];
+
+int main(int argc, char* argv[]){
+	FILE* fp;
+	fpos_t pos;
+	if(argc != 2){
+		printf("Usage: %s mode\n",argv[0]);
+		return -1;
+	}
+	// Open a file
+	if(argv[1][0] != 'a'){
+		if((fp = fopen("testfile", "w+")) == NULL){
+			printf("Call fopen() failed\n");
+			return -2;
+		}
+	}
+	else{
+		if((fp = fopen("testfile", "a+")) == NULL){
+			printf("Call fopen() failed\n");
+			return -3;
+		}
+	}
+	// Write file
+	fputs("1234567890", fp);
+	fputs("abcdefghij", fp);
+	// Check file pos
+	fseek(fp, 0, SEEK_END);
+	fgetpos(fp, &pos);
+	printf("Current file end position is ");
+	for(size_t i = 0; i < sizeof(pos); i++) {
+		printf("%02X", ((unsigned char *)&pos)[i]);
+	}
+    printf("\n");
+	// Move the pointer position
+	fseek(fp, 30, SEEK_END);
+	// Check file pos
+	fgetpos(fp, &pos);
+	printf("Call fseek(fp, 30, SEEK_END)\n");
+	// printf("Current file position is %ld\n", pos);
+	printf("Current file end position is ");
+	for(size_t i = 0; i < sizeof(pos); i++) {
+		printf("%02X", ((unsigned char *)&pos)[i]);
+	}
+    printf("\n");
+	// Write file
+	fputs("abcdefg", fp);
+	printf("Write %s \n", "abcdefg");
+	// Check file pos
+	fgetpos(fp, &pos);
+	// printf("Current position of file is %ld \n", pos);
+	printf("Current file end position is ");
+	for(size_t i = 0; i < sizeof(pos); i++) {
+		printf("%02X", ((unsigned char *)&pos)[i]);
+	}
+    printf("\n");
+	// Close file
+	fclose(fp);
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ date
+Sat Feb 29 10:16:55 CST 2020
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_7$ 
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+zhj@thinkpad-vmware:~/Linux/Exercise$ mkdir ex4_10
+zhj@thinkpad-vmware:~/Linux/Exercise$ cd ex4_10/
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ vi ex4_10.c
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ gcc ex4_10.c -o ex4_10
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ ./ex4_10 testfile
+Call fgets: This is first line.
+ 
+End of file
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ cat testfile 
+This is first line.
+This line should be the new second line.
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ vi ex4_10.c 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ vi ex4_10.c 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ gcc ex4_10.c -o ex4_10
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ ./ex4_10 testfile
+Call fgets: This is first line.
+ 
+End of file
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ cat testfile 
+This is first line.
+This line should be the new second line.
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ rm testfile 
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ ./ex4_10 testfile
+Call fgets: This is first line.
+ 
+End of file
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ cat testfile 
+This is first line.
+This line should be the new second line.
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ cd ..
+zhj@thinkpad-vmware:~/Linux/Exercise$ ls
+ex3_1  ex3_3  ex3_4  ex3_8  ex3_9  ex4_10  ex4_3  ex4_4  ex4_5  ex4_7  ex4_8  ex4_9  mooc
+zhj@thinkpad-vmware:~/Linux/Exercise$ cd ..
+zhj@thinkpad-vmware:~/Linux$ git add .
+zhj@thinkpad-vmware:~/Linux$ git commit -m "Upload ex4"
+[master 62d4d8c] Upload ex4
+ 11 files changed, 179 insertions(+)
+ create mode 100755 Exercise/ex4_10/ex4_10
+ create mode 100644 Exercise/ex4_10/ex4_10.c
+ create mode 100644 Exercise/ex4_10/testfile
+ create mode 100755 Exercise/ex4_7/ex4_7
+ create mode 100644 Exercise/ex4_7/ex4_7.c
+ create mode 100644 Exercise/ex4_7/testfile
+ create mode 100644 Exercise/ex4_8/aaa
+ create mode 100755 Exercise/ex4_8/ex4_8
+ create mode 100644 Exercise/ex4_8/ex4_8.c
+ create mode 100755 Exercise/ex4_9/ex4_9
+ create mode 100644 Exercise/ex4_9/ex4_9.c
+zhj@thinkpad-vmware:~/Linux$ git pull origin master 
+From github.com:ZHJ0125/Embedded_Linux
+ * branch            master     -> FETCH_HEAD
+Already up to date.
+zhj@thinkpad-vmware:~/Linux$ git push origin master 
+Counting objects: 18, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (17/17), done.
+Writing objects: 100% (18/18), 11.14 KiB | 2.78 MiB/s, done.
+Total 18 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 1 local object.
+To github.com:ZHJ0125/Embedded_Linux.git
+   d3345d5..62d4d8c  master -> master
+zhj@thinkpad-vmware:~/Linux$ cd Exercise/ex4_10/
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ cat ex4_10.c 
+#include <stdio.h>
+
+int get_line(char* buf, int bufsize, FILE* fp){
+	if(fgets(buf, bufsize, fp) == NULL){
+		if(feof(fp)){
+			printf("End of file\n");
+			return EOF;
+		}
+		else{
+			printf("Call fgets() failed\n");
+			return 0;
+		}
+	}
+	printf("Call fgets: %s \n", buf);
+	return 0;
+}
+
+char buf[132];
+int main(int argc, char* argv[]){
+	FILE* fp;
+	// Check parameters
+	if(argc <= 1){
+		printf("Usage: %s file\n", argv[0]);
+		return -1;
+	}
+	// Open file with "w+" mode
+	if((fp = fopen(argv[1], "w+")) == NULL){
+		printf("Call fopen() failedn\n");
+		return -2;
+	}
+	// Write two lines into file
+	fprintf(fp, "This is first line.\n");
+	fprintf(fp, "This is second line.\n");
+	// Close file
+	fclose(fp);
+
+	// Open file with "r+" mode
+	if((fp = fopen(argv[1], "r+")) == NULL){
+		printf("Call fopen() failedn\n");
+		return -3;
+	}
+	// Read data from file
+	get_line(buf, sizeof(buf), fp);
+	// fflush(NULL);
+	fprintf(fp, "This line should be the new second line.\n");
+	fflush(NULL);
+	get_line(buf, sizeof(buf), fp);
+	// Close file
+	fclose(fp);
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ date
+Sat Feb 29 11:55:44 CST 2020
+zhj@thinkpad-vmware:~/Linux/Exercise/ex4_10$ 

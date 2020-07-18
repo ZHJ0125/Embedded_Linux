@@ -10,10 +10,10 @@
 6. 记录最近一次保存数据的时间
 
 主函数如图1所示，文件写入过程如图2所示：
-![lesson6_show1](https://zhj0125.oss-cn-shanghai.aliyuncs.com/Class/lesson6_show1.png)
+![lesson6_show1](../../Image/from_oss/lesson6_show1.png)
 图1.主函数
 
-![lesson6_show2](https://zhj0125.oss-cn-shanghai.aliyuncs.com/Class/lesson6_show2.png)
+![lesson6_show2](../../Image/from_oss/lesson6_show2.png)
 图2.文件写入函数
 
 # 二、功能测试
@@ -24,6 +24,6 @@
 
 测试过程如图3所示：
 
-![lesson6_test](https://zhj0125.oss-cn-shanghai.aliyuncs.com/Class/lesson6_test.jpg)
+![lesson6_test](../../Image/from_oss/lesson6_test.jpg)
 
 图3.功能测试

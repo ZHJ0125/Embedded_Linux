@@ -1,0 +1,331 @@
+zhj@thinkpad-vmware:~$ ls
+Desktop    Downloads         hello    Linux_Class  Music   opencv_contrib      opencv.zip  Public     Videos
+Documents  face_recognition  hello.c  mooc         opencv  opencv_contrib.zip  Pictures    Templates
+zhj@thinkpad-vmware:~$ man open
+zhj@thinkpad-vmware:~$ man fopen
+zhj@thinkpad-vmware:~$ ls -li
+total 147136
+1053097 drwxr-xr-x  2 zhj zhj     4096 Oct 29 15:57 Desktop
+1053101 drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Documents
+1053098 drwxr-xr-x  2 zhj zhj     4096 Feb  9 11:58 Downloads
+1060354 drwxr-xr-x  8 zhj zhj     4096 Oct 29 19:11 face_recognition
+1048642 -rwxr-xr-x  1 zhj zhj     8304 Feb 12 16:04 hello
+1048660 -rw-r--r--  1 zhj zhj       65 Feb 12 16:04 hello.c
+1060236 drwxr-xr-x 13 zhj zhj     4096 Oct 29 20:55 Linux_Class
+1048644 drwxr-xr-x  4 zhj zhj     4096 Feb 12 15:11 mooc
+1053102 drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Music
+1051619 drwxr-xr-x 13 zhj zhj     4096 Oct 29 11:48 opencv
+1060129 drwxr-xr-x  6 zhj zhj     4096 Nov 17  2018 opencv_contrib
+1053393 -rw-r--r--  1 zhj zhj 58466581 Oct 28 21:05 opencv_contrib.zip
+1053392 -rw-r--r--  1 zhj zhj 92123950 Oct 28 20:56 opencv.zip
+1053103 drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Pictures
+1053100 drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Public
+1053099 drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Templates
+1053104 drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Videos
+zhj@thinkpad-vmware:~$ ls -ld
+drwxr-xr-x 31 zhj zhj 4096 Feb 12 17:57 .
+zhj@thinkpad-vmware:~$ man read
+zhj@thinkpad-vmware:~$ man write
+zhj@thinkpad-vmware:~$ man fwrite
+zhj@thinkpad-vmware:~$ vi test.c
+zhj@thinkpad-vmware:~$ cat test.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#define LEN 30
+
+
+int main(){
+	int fd;
+	char buf[LEN]='\0';
+	fd = open("hello.txt", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+	if(fd == -1){
+		perror("Fail to open.");
+		return -1;
+	}
+	if(write(fd, "Hello,software weekly", LEN) == -1){
+		perror("Fail to write.");
+		return -1;
+	}
+	if(close(fd) == -1){
+		perror("Fail to close.");
+		return -1;
+	}
+	// check file
+	if((fd=open("hello.txt",O_RDWR)) == -1)
+	{
+		perror("Fail to open.");
+		return -1;
+	}
+	if(read(fd,buf,LEN-1) == -1)
+	{
+		perror("Fail to read.");
+		return -1;
+	}
+	buf[LEN]="\0";
+	printf("%s\n",buf);
+	if(close(fd) == -1){
+		perror("Fail to close.");
+		return -1;
+	}
+	return 0;
+}
+zhj@thinkpad-vmware:~$ gcc test.c -o test
+test.c: In function ‘main’:
+test.c:10:16: error: invalid initializer
+  char buf[LEN]='\0';
+                ^~~~
+test.c:16:5: warning: implicit declaration of function ‘write’; did you mean ‘fwrite’? [-Wimplicit-function-declaration]
+  if(write(fd, "Hello,software weekly", LEN) == -1){
+     ^~~~~
+     fwrite
+test.c:20:5: warning: implicit declaration of function ‘close’; did you mean ‘pclose’? [-Wimplicit-function-declaration]
+  if(close(fd) == -1){
+     ^~~~~
+     pclose
+test.c:30:5: warning: implicit declaration of function ‘read’; did you mean ‘fread’? [-Wimplicit-function-declaration]
+  if(read(fd,buf,LEN-1) == -1)
+     ^~~~
+     fread
+test.c:35:10: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+  buf[LEN]="\0";
+          ^
+zhj@thinkpad-vmware:~$ vi test.c 
+zhj@thinkpad-vmware:~$ gcc test.c -o test
+test.c:5:10: fatal error: unistd: No such file or directory
+ #include <unistd>
+          ^~~~~~~~
+compilation terminated.
+zhj@thinkpad-vmware:~$ vi test.c 
+zhj@thinkpad-vmware:~$ head -n 5 test.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+zhj@thinkpad-vmware:~$ gcc test.c -o test
+test.c: In function ‘main’:
+test.c:11:16: error: invalid initializer
+  char buf[LEN]='\0';
+                ^~~~
+test.c:36:10: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+  buf[LEN]="\0";
+          ^
+zhj@thinkpad-vmware:~$ vi test.c 
+zhj@thinkpad-vmware:~$ sed -n '9,12p' test.c 
+int main(){
+	int fd;
+	char buf[LEN]=0;
+	fd = open("hello.txt", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+zhj@thinkpad-vmware:~$ gcc test.c -o test
+test.c: In function ‘main’:
+test.c:11:16: error: invalid initializer
+  char buf[LEN]=0;
+                ^
+test.c:36:10: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+  buf[LEN]="\0";
+          ^
+zhj@thinkpad-vmware:~$ vi test.c 
+zhj@thinkpad-vmware:~$ sed -n '9,12p' test.c 
+int main(){
+	int fd;
+	char buf[LEN]="\0";
+	fd = open("hello.txt", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+zhj@thinkpad-vmware:~$ gcc test.c -o test
+test.c: In function ‘main’:
+test.c:36:10: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+  buf[LEN]="\0";
+          ^
+zhj@thinkpad-vmware:~$ vi test.c 
+zhj@thinkpad-vmware:~$ cat test.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#define LEN 30
+
+
+int main(){
+	int fd;
+	char buf[LEN]="\0";
+	fd = open("hello.txt", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+	if(fd == -1){
+		perror("Fail to open.");
+		return -1;
+	}
+	if(write(fd, "Hello,software weekly", LEN) == -1){
+		perror("Fail to write.");
+		return -1;
+	}
+	if(close(fd) == -1){
+		perror("Fail to close.");
+		return -1;
+	}
+	// check file
+	if((fd=open("hello.txt",O_RDWR)) == -1)
+	{
+		perror("Fail to open.");
+		return -1;
+	}
+	if(read(fd,buf,LEN-1) == -1)
+	{
+		perror("Fail to read.");
+		return -1;
+	}
+	buf[LEN]='\0';
+	printf("%s\n",buf);
+	if(close(fd) == -1){
+		perror("Fail to close.");
+		return -1;
+	}
+	return 0;
+}
+zhj@thinkpad-vmware:~$ gcc test.c -o test
+zhj@thinkpad-vmware:~$ l
+Desktop/    Downloads/         hello*   Linux_Class/  Music/   opencv_contrib/     opencv.zip  Public/     test*   Videos/
+Documents/  face_recognition/  hello.c  mooc/         opencv/  opencv_contrib.zip  Pictures/   Templates/  test.c
+zhj@thinkpad-vmware:~$ ./test 
+Hello,software weekly
+zhj@thinkpad-vmware:~$ ls -l
+total 147156
+drwxr-xr-x  2 zhj zhj     4096 Oct 29 15:57 Desktop
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Documents
+drwxr-xr-x  2 zhj zhj     4096 Feb  9 11:58 Downloads
+drwxr-xr-x  8 zhj zhj     4096 Oct 29 19:11 face_recognition
+-rwxr-xr-x  1 zhj zhj     8304 Feb 12 16:04 hello
+-rw-r--r--  1 zhj zhj       65 Feb 12 16:04 hello.c
+-rw-------  1 zhj zhj       30 Feb 18 10:27 hello.txt
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 20:55 Linux_Class
+drwxr-xr-x  4 zhj zhj     4096 Feb 12 15:11 mooc
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Music
+drwxr-xr-x 13 zhj zhj     4096 Oct 29 11:48 opencv
+drwxr-xr-x  6 zhj zhj     4096 Nov 17  2018 opencv_contrib
+-rw-r--r--  1 zhj zhj 58466581 Oct 28 21:05 opencv_contrib.zip
+-rw-r--r--  1 zhj zhj 92123950 Oct 28 20:56 opencv.zip
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Pictures
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Public
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Templates
+-rwxr-xr-x  1 zhj zhj     8568 Feb 18 10:27 test
+-rw-r--r--  1 zhj zhj      734 Feb 18 10:27 test.c
+drwxr-xr-x  2 zhj zhj     4096 Oct 27 07:42 Videos
+zhj@thinkpad-vmware:~$ ls
+Desktop    Downloads         hello    hello.txt    mooc   opencv          opencv_contrib.zip  Pictures  Templates  test.c
+Documents  face_recognition  hello.c  Linux_Class  Music  opencv_contrib  opencv.zip          Public    test       Videos
+zhj@thinkpad-vmware:~$ mkdir Linux
+zhj@thinkpad-vmware:~$ mv mooc/ Linux
+zhj@thinkpad-vmware:~$ mv test.c Linux
+zhj@thinkpad-vmware:~$ rm hello.txt test 
+zhj@thinkpad-vmware:~$ cd Linux
+zhj@thinkpad-vmware:~/Linux$ ls
+mooc  test.c
+zhj@thinkpad-vmware:~/Linux$ mkdir homework 
+zhj@thinkpad-vmware:~/Linux$ mv test.c homework/
+zhj@thinkpad-vmware:~/Linux$ cd homework/
+zhj@thinkpad-vmware:~/Linux/homework$ ls
+test.c
+zhj@thinkpad-vmware:~/Linux/homework$ vi test.c 
+zhj@thinkpad-vmware:~/Linux/homework$ gcc test.c -o test
+zhj@thinkpad-vmware:~/Linux/homework$ ls
+test  test.c
+zhj@thinkpad-vmware:~/Linux/homework$ ./test 
+Hello,software weekly
+zhj@thinkpad-vmware:~/Linux/homework$ ls -l
+total 20
+-rw------- 1 zhj zhj   30 Feb 18 10:33 hello.txt
+-rwxr-xr-x 1 zhj zhj 8568 Feb 18 10:33 test
+-rw-r--r-- 1 zhj zhj  733 Feb 18 10:32 test.c
+zhj@thinkpad-vmware:~/Linux/homework$ cp test.c test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ vi test_simplify.c 
+zhj@thinkpad-vmware:~/Linux/homework$ cat test_simplify.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#define LEN 30
+#define STR "Hello,software weekly"
+
+int main(){
+	int fd;
+	char buf[LEN]="\0";
+	if((fd = open("hello.txt", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR)) == -1){
+		perror("Fail to open");
+		return -1;
+	}
+	write(fd, STR, LEN);
+	close(fd);
+	// Check file
+	fd=open("hello.txt",O_RDWR);
+	read(fd,buf,LEN-1);
+	close(fd);
+	buf[LEN]='\0';
+	printf("%s\n",buf);
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/homework$ ls
+hello.txt  test  test.c  test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ rm hello.txt 
+zhj@thinkpad-vmware:~/Linux/homework$ gcc test_simplify.c -o test_simplify
+zhj@thinkpad-vmware:~/Linux/homework$ ls
+test  test.c  test_simplify  test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ ./test_simplify 
+Hello,software weekly
+zhj@thinkpad-vmware:~/Linux/homework$ ls -l
+total 36
+-rw------- 1 zhj zhj   30 Feb 18 10:45 hello.txt
+-rwxr-xr-x 1 zhj zhj 8568 Feb 18 10:33 test
+-rw-r--r-- 1 zhj zhj  733 Feb 18 10:32 test.c
+-rwxr-xr-x 1 zhj zhj 8576 Feb 18 10:45 test_simplify
+-rw-r--r-- 1 zhj zhj  491 Feb 18 10:44 test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ cat hello.txt 
+Hello,software weeklyzhj@thinkpad-vmware:~/Linux/homework$ 
+zhj@thinkpad-vmware:~/Linux/homework$ vi test_simplify.c 
+zhj@thinkpad-vmware:~/Linux/homework$ cat test_simplify.c 
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#define LEN 30
+#define FILENAME "hello.txt"
+#define STR "Hello,software weekly"
+
+int main(){
+	int fd;
+	char buf[LEN]="\0";
+	if((fd = open(FILENAME, O_CREAT|O_RDWR, S_IRUSR|S_IWUSR)) == -1){
+		perror("Fail to open");
+		return -1;
+	}
+	write(fd, STR, LEN);
+	close(fd);
+	// Check file
+	fd=open(FILENAME, O_RDWR);
+	read(fd,buf,LEN-1);
+	close(fd);
+	buf[LEN]='\0';
+	printf("%s\n",buf);
+	return 0;
+}
+zhj@thinkpad-vmware:~/Linux/homework$ ls
+hello.txt  test  test.c  test_simplify  test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ rm hello.txt 
+zhj@thinkpad-vmware:~/Linux/homework$ gcc test_simplify.c -o test_simplify
+zhj@thinkpad-vmware:~/Linux/homework$ ls
+test  test.c  test_simplify  test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ ./test_simplify 
+Hello,software weekly
+zhj@thinkpad-vmware:~/Linux/homework$ ls -l
+total 36
+-rw------- 1 zhj zhj   30 Feb 18 10:49 hello.txt
+-rwxr-xr-x 1 zhj zhj 8568 Feb 18 10:33 test
+-rw-r--r-- 1 zhj zhj  733 Feb 18 10:32 test.c
+-rwxr-xr-x 1 zhj zhj 8576 Feb 18 10:49 test_simplify
+-rw-r--r-- 1 zhj zhj  515 Feb 18 10:48 test_simplify.c
+zhj@thinkpad-vmware:~/Linux/homework$ cat hello.txt 
+Hello,software weeklyzhj@thinkpad-vmware:~/Linux/homework$ 
+zhj@thinkpad-vmware:~/Linux/homework$ 

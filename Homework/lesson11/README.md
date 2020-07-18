@@ -44,7 +44,7 @@
 
 ### 程序流程
 
-![lesson11_flow](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Homework/lesson11/lesson11_flow.png)
+![lesson11_flow](../../Image/Homework/lesson11/lesson11_flow.png)
 
 ### 代码构建方法
 

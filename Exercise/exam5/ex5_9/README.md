@@ -10,4 +10,4 @@
 
 # 测试过程
 
-![测试过程](https://github.com/ZHJ0125/Embedded_Linux/blob/master/Image/Exercise/ex5_9/ex5_9.png)
+![测试过程](../../../Image/Exercise/ex5_9/ex5_9.png)
